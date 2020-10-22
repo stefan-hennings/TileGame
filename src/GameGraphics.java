@@ -9,6 +9,7 @@ import java.awt.*;
  * Copyright: MIT
  */
 public class GameGraphics extends JPanel {
+
     GameLogic logic;
     private int sizeOfTile;
     private int margin;
@@ -30,10 +31,23 @@ public class GameGraphics extends JPanel {
 
     }
 
-    public void drawGrid(Graphics2D graphics2D) {
+    public void buildGrid(Graphics2D graphics2D) {
         for (int i = 0; i < logic.getTiles().length; i++) {
             int column = i % logic.getSize();
             int row = i / logic.getSize();
+
+            int xCoordinate = column * sizeOfTile + margin;
+            int yCoordinate = row * sizeOfTile + margin;
+
+            if(logic.getTiles()[i]==0){
+                if(logic.isSolved()){
+
+                    //TODO: Change message type from JOptionPane.
+
+                    JOptionPane.showMessageDialog(null, "Grattis, du vann!");
+                }
+                continue;
+            }
         }
     }
 }
