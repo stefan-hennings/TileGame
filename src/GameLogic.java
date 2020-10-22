@@ -23,7 +23,15 @@ public class GameLogic {
     }
 
     public boolean isSolvable(){
-        return true;
+        int countInversions = 0;
+
+        for (int i = 0; i < numberOfTiles; i++) {
+            for (int j = 0; j < i; j++) {
+                if (tiles[j] > tiles[i])
+                    countInversions++;
+            }
+        }
+        return countInversions % 2 == 0;
     }
 
     public void newGame(){
