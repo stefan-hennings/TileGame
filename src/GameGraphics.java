@@ -21,7 +21,7 @@ public class GameGraphics extends JPanel {
         this.margin = margin;
 
         sizeOfGrid = (dimension - 2 * margin);
-        sizeOfTile = sizeOfGrid / logic.getSize();
+        sizeOfTile = sizeOfGrid / logic.getGridSide();
 
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
@@ -33,8 +33,8 @@ public class GameGraphics extends JPanel {
 
     public void buildGrid(Graphics2D graphics2D) {
         for (int i = 0; i < logic.getTiles().length; i++) {
-            int column = i % logic.getSize();
-            int row = i / logic.getSize();
+            int column = i % logic.getGridSide();
+            int row = i / logic.getGridSide();
 
             int xCoordinate = column * sizeOfTile + margin;
             int yCoordinate = row * sizeOfTile + margin;
