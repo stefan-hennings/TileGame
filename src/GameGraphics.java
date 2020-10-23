@@ -39,6 +39,23 @@ public class GameGraphics extends JPanel {
                 } else {
                     int clickX = e.getX() - margin;
                     int clickY = e.getY() - margin;
+                    // If user clicks outside of grid, we return.
+                    if (clickX < 0 || clickX > sizeOfGrid  || clickY < 0  || clickY > sizeOfGrid) {
+                        return;
+                    }
+
+                    // Otherwise we get position in the grid
+
+                    int clickPositionColumn = clickX / sizeOfTile;
+                    int clickPositionRow = clickY / sizeOfTile;
+
+                    // We get the position of the blank cell
+
+                    int blankCellColumn = logic.getBlankPosition() % logic.getGridSide();
+                    int blankCellRow = logic.getBlankPosition() / logic.getGridSide();
+
+
+                    int clickPosition = clickPositionRow * logic.getGridSide() + clickPositionColumn;
 
                 }
             }
@@ -88,11 +105,21 @@ public class GameGraphics extends JPanel {
         //Add Anti aliasing to components, makes them smooth.
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         buildGrid(graphics2D);
+        drawStartMessage(graphics2D);
     }
     private void drawCenteredString(Graphics2D graphics, String string, int xCoordinate, int yCoordinate) {
 
         FontMetrics fontMetrics = graphics.getFontMetrics();
         graphics.drawString(string,  xCoordinate + (sizeOfTile - fontMetrics.stringWidth(string)) / 2,
                 yCoordinate + (fontMetrics.getAscent() + (sizeOfTile - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
+    }
+    private void drawStartMessage(Graphics2D g) {
+        if (logic.isSolved()) {
+            g.setFont(getFont().deriveFont(Font.BOLD, 25));
+            g.setColor(AWESOME_COLOR);
+            String s = "Grattis, du vann! Klicka för nytt spel";
+            g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
+                    getHeight() - margin);
+        }
     }
 }
