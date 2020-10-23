@@ -16,7 +16,7 @@ public class GameGraphics extends JPanel {
     private int sizeOfTile;
     private int margin;
     private int sizeOfGrid;
-    public static final Color AWESOME_COLOR = new Color(0x9e7bb5);
+    public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
 
     public GameGraphics(int dimension, int margin, int gridSide) {
 
@@ -28,10 +28,11 @@ public class GameGraphics extends JPanel {
 
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
-        setForeground(AWESOME_COLOR);
+        setForeground(FOREGROUND_COLOR);
         setFont(new Font("Serif", Font.BOLD, 50));
 
         addMouseListener(new MouseAdapter() {
+
             @Override
             public void mousePressed(MouseEvent e) {
                 if(logic.isSolved()){
@@ -57,10 +58,14 @@ public class GameGraphics extends JPanel {
 
                     int clickPosition = clickPositionRow * logic.getGridSide() + clickPositionColumn;
 
-                }
-            }
+                    logic.moveTiles(clickPosition);
 
-            });
+                }
+                repaint();
+            }
+        });
+
+        logic.newGame();
 
     }
 
@@ -116,7 +121,7 @@ public class GameGraphics extends JPanel {
     private void drawStartMessage(Graphics2D g) {
         if (logic.isSolved()) {
             g.setFont(getFont().deriveFont(Font.BOLD, 25));
-            g.setColor(AWESOME_COLOR);
+            g.setColor(FOREGROUND_COLOR);
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
                     getHeight() - margin);
