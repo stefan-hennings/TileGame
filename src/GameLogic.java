@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,26 +13,35 @@ public class GameLogic {
     private int[] tiles;
     private int numberOfTiles;
     List<Integer> shuffledNumbers;
-    private int size;
+    private int gridSide;
+    private int blankPosition;
 
-    public GameLogic(int size){
-        this.size = size;
+    public GameLogic(int gridSide){
+        this.gridSide = gridSide;
+        tiles = new int[this.gridSide * this.gridSide];
+        numberOfTiles = this.gridSide *this.gridSide -1;
+
+        shuffledNumbers = new ArrayList<>();
+
+        for(int i = 1; i<(this.gridSide *this.gridSide); i++){
+            shuffledNumbers.add(i);
+        }
     }
 
     public boolean isSolved(){
-        return true;
+        return false;
     }
 
     public boolean isSolvable(){
-        int countInversions = 0;
+        int inversionCount = 0;
 
         for (int i = 0; i < numberOfTiles; i++) {
             for (int j = 0; j < i; j++) {
                 if (tiles[j] > tiles[i])
-                    countInversions++;
+                    inversionCount++;
             }
         }
-        return countInversions % 2 == 0;
+        return inversionCount % 2 == 0;
     }
 
     public void newGame(){
@@ -42,7 +52,18 @@ public class GameLogic {
         return tiles;
     }
 
-    public int getSize() {
-        return size;
+    public int getGridSide() {
+        return gridSide;
+    }
+
+    public int getBlankPosition() {
+        return blankPosition;
+    }
+
+    public void setBlankPosition(int blankPosition) {
+        this.blankPosition = blankPosition;
+    }
+    public void changeArray(int index, int newNumber){
+        tiles[index] = newNumber;
     }
 }
