@@ -8,7 +8,7 @@ public class Game extends JFrame {
         setIconImage(icon.getImage());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Världens bästa brickspel, typ");
-        add(new GameGraphics(600,30));
+        add(new GameGraphics(600,30, 4));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
