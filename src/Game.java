@@ -21,6 +21,7 @@ public class Game extends JFrame {
 
         slider = new JSlider(JSlider.HORIZONTAL, 2,7, 4);
         slider.setMajorTickSpacing(1);
+        slider.setFont(new Font("Bell MT", Font.PLAIN, 15));
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setBackground(GameGraphics.FOREGROUND_COLOR);
@@ -57,7 +58,7 @@ public class Game extends JFrame {
         southPanel.add(movesText, BorderLayout.SOUTH);
         northPanel.add(startOverButton, BorderLayout.CENTER);
         northPanel.add(slider, BorderLayout.EAST);
-        startOverButton.setFont(new Font("Serif", Font.BOLD, 25));
+        startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
         startOverButton.setBackground(GameGraphics.FOREGROUND_COLOR);
         startOverButton.setForeground(Color.BLACK);
         startOverButton.addActionListener(e -> {
