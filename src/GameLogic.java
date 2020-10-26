@@ -41,106 +41,63 @@ public class GameLogic {
         }
 
         // Otherwise we get position in the grid
-        int clickPositionColumn = eX / tileSize;
-        int clickPositionRow = eY / tileSize;
+        int clickedColumn = eX / tileSize;
+        int clickedRow = eY / tileSize;
 
-        int blankCellColumn = blankPosition % gridSide;
-        int blankCellRow = blankPosition / gridSide;
+        int blackColumn = blankPosition % gridSide;
+        int blackRow = blankPosition / gridSide;
 
-        int clickPosition = clickPositionRow * gridSide + clickPositionColumn;
+        int clickedIndex = clickedRow * gridSide + clickedColumn;
 
-        int direction = 0;
-
-        if (clickPositionColumn == blankCellColumn  &&  Math.abs(clickPositionRow - blankCellRow) > 0) {
-
-            direction = (clickPositionRow - blankCellRow) > 0 ? gridSide : -gridSide;
-
-        } else if (clickPositionRow == blankCellRow && Math.abs(clickPositionColumn - blankCellColumn) > 0) {
-
-            direction = (clickPositionColumn - blankCellColumn) > 0 ? 1 : -1;
-
+        if(clickedIndex==blankPosition){
+            return;
         }
-
-        if (direction != 0) {
-            do {
-                int newBlankPosition = blankPosition + direction;
-                tiles[blankPosition] = tiles[newBlankPosition];
-                blankPosition = newBlankPosition;
-
-            } while(blankPosition != clickPosition);
-            tiles[blankPosition] = 0;
-
-            moveCount++;
+        else if (clickedRow == blackRow) {
+            if (clickedColumn < blackColumn) {
+                for (int i = clickedIndex; i <= blankPosition; i++) {
+                    tilesToRotate.add(tiles[i]);
+                }
+                Collections.rotate(tilesToRotate, 1);
+                int insertIndex = 0;
+                for (int i = clickedIndex; i <= blankPosition; i++) {
+                    tiles[i] = tilesToRotate.get(insertIndex);
+                    insertIndex++;
+                }
+            } else {
+                for (int i = blankPosition; i <= clickedIndex; i++) {
+                    tilesToRotate.add(tiles[i]);
+                }
+                Collections.rotate(tilesToRotate, -1);
+                int insertIndex = 0;
+                for (int i = blankPosition; i <= clickedIndex; i++) {
+                    tiles[i] = tilesToRotate.get(insertIndex++);
+                }
+            }
+        } else if (clickedColumn == blackColumn) {
+            if (clickedRow < blackRow) {
+                for (int i = clickedIndex; i <= blankPosition; i += gridSide) {
+                    tilesToRotate.add(tiles[i]);
+                }
+                Collections.rotate(tilesToRotate, 1);
+                int insertIndex = 0;
+                for (int i = clickedIndex; i <= blankPosition; i += gridSide) {
+                    tiles[i] = tilesToRotate.get(insertIndex++);
+                }
+            } else {
+                for (int i = blankPosition; i <= clickedIndex; i += gridSide) {
+                    tilesToRotate.add(tiles[i]);
+                }
+                Collections.rotate(tilesToRotate, -1);
+                int insertIndex = 0;
+                for (int i = blankPosition; i <= clickedIndex; i += gridSide) {
+                    tiles[i] = tilesToRotate.get(insertIndex++);
+                }
+            }
+        } else {
+            return; //Illegal Move - do nothing
         }
-
-
-
-//        int clickedIndex = 0;
-//        int blackIndex = 0;
-//        int indexesFoundCount = 0;
-//        for (int i = 0; i < tiles.length; i++) {
-//            if (tiles[i] == clickPosition) {
-//                clickedIndex = i;
-//                indexesFoundCount++;
-//            } else if (tiles[i] == 0) {
-//                blackIndex = i;
-//                indexesFoundCount++;
-//            }
-//            if (indexesFoundCount == 2) {
-//                break;
-//            }
-//        }
-//
-//        int clickedRow = clickedIndex % gridSide;
-//        int clickedColumn = clickedIndex / gridSide;
-//        int blackRow = blackIndex % gridSide;
-//        int blackColumn = blackIndex / gridSide;
-//
-//        shuffler.clear();
-//        if (clickedRow == blackRow) {
-//            if (clickedColumn < blackColumn) {
-//                for (int i = clickedIndex; i <= blackIndex; i++) {
-//                    shuffler.add(tiles[i]);
-//                }
-//                Collections.rotate(shuffler, 1);
-//                int insertIndex = 0;
-//                for (int i = clickedIndex; i < blackIndex; i++) {
-//                    tiles[i] = shuffler.get(insertIndex++);
-//                }
-//            } else {
-//                for (int i = blackIndex; i <= clickedIndex; i++) {
-//                    shuffler.add(tiles[i]);
-//                }
-//                Collections.rotate(shuffler, -1);
-//                int insertIndex = 0;
-//                for (int i = clickedIndex; i < blackIndex; i++) {
-//                    tiles[i] = shuffler.get(insertIndex++);
-//                }
-//            }
-//        } else if (clickedColumn == blankCellColumn) {
-//            if (clickedRow < blackRow) {
-//                for (int i = clickedIndex; i <= blackIndex; i += gridSide) {
-//                    shuffler.add(tiles[i]);
-//                }
-//                Collections.rotate(shuffler, 1);
-//                int insertIndex = 0;
-//                for (int i = clickedIndex; i < blackIndex; i += gridSide) {
-//                    tiles[i] = shuffler.get(insertIndex++);
-//                }
-//            } else {
-//                for (int i = blackIndex; i <= clickedIndex; i += gridSide) {
-//                    shuffler.add(tiles[i]);
-//                }
-//                Collections.rotate(shuffler, -1);
-//                int insertIndex = 0;
-//                for (int i = clickedIndex; i < blackIndex; i += gridSide) {
-//                    tiles[i] = shuffler.get(insertIndex++);
-//                }
-//            }
-//        } else {
-//            return; //Clicked invalid tile, do nothing
-//        }
-//        moveCount++;
+        this.blankPosition =clickedIndex;
+        moveCount++;
     }
 
     public boolean isSolved() {
