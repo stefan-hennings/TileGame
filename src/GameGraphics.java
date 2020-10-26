@@ -32,7 +32,7 @@ public class GameGraphics extends JPanel {
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
         setForeground(FOREGROUND_COLOR);
-        setFont(new Font("Serif", Font.BOLD, 50));
+        setFont(new Font("Bell MT", Font.BOLD, 50));
 
         addMouseListener(new MouseAdapter() {
 
@@ -49,7 +49,7 @@ public class GameGraphics extends JPanel {
                     logic.moveTiles(clickX, clickY, sizeOfGrid, sizeOfTile);
 
                     movesText.setHorizontalAlignment(SwingConstants.CENTER);
-                    movesText.setFont(new Font("SansSerif", Font.BOLD, 15));
+                    movesText.setFont(new Font("Bell MT", Font.BOLD, 15));
                     movesText.setForeground(FOREGROUND_COLOR);
                     if(logic.getMoveCount()>0) {
                         movesText.setText("Antal moves: " + logic.getMoveCount());
