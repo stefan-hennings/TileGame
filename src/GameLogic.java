@@ -140,8 +140,16 @@ public class GameLogic {
 //        moveCount++;
     }
 
-    public boolean isSolved(){
-        return false;
+    public boolean isSolved() {
+        if (tiles[tiles.length - 1] != 0) // if blank tile is not in the solved position ==> not solved
+            return false;
+
+        for (int i = numberOfTiles - 1; i >= 0; i--) {
+            if (tiles[i] != i + 1)
+                return false;
+        }
+
+        return true;
     }
 
     public boolean isSolvable(){
@@ -197,5 +205,16 @@ public class GameLogic {
 
     public int getMoveCount() {
         return moveCount;
+    }
+
+    public void setGridSide(int gridSide) {
+        this.gridSide = gridSide;
+        tiles = new int[gridSide * gridSide];
+        numberOfTiles = gridSide *gridSide -1;
+        shuffler = new ArrayList<>();
+
+        for(int i = 1; i<(this.gridSide *this.gridSide); i++){
+            shuffler.add(i);
+        }
     }
 }
