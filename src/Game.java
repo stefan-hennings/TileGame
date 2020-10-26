@@ -8,6 +8,7 @@ public class Game extends JFrame {
     private static ImageIcon icon = new ImageIcon("numberfifteen.png");
     private static JPanel southPanel = new JPanel();
     private static JPanel northPanel = new JPanel();
+    private static JPanel topPanel = new JPanel();
     private static JLabel movesText;
     private static final JButton startOverButton = new JButton("Starta om");
 
@@ -64,8 +65,11 @@ public class Game extends JFrame {
             run.callNewGame();
             run.repaint();
         });
-        add(southPanel, BorderLayout.SOUTH);
-        add(northPanel, BorderLayout.NORTH);
+        topPanel.setLayout(new GridLayout(2,0));
+        topPanel.add(northPanel);
+        topPanel.add(southPanel);
+
+        add(topPanel, BorderLayout.NORTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
