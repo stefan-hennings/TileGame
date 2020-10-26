@@ -142,4 +142,12 @@ public class GameGraphics extends JPanel {
         movesText.setText("");
         logic.newGame();
     }
+
+    public GameLogic getLogic() {
+        return logic;
+    }
+
+    public void setSizeOfTile(int gridSide) {
+         sizeOfTile = sizeOfGrid/gridSide;
+    }
 }
