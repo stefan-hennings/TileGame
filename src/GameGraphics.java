@@ -22,6 +22,8 @@ public class GameGraphics extends JPanel {
 
     private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
+    private int arcWidth;
+
 
     //TODO: Adding options for changing color?
     //TODO: Adding timer?
@@ -72,7 +74,7 @@ public class GameGraphics extends JPanel {
     }
 
     public void buildGrid(Graphics2D graphics2D) {
-
+        arcWidth = sizeOfTile/2;
         for (int i = 0; i < logic.getTiles().length; i++) {
 
             int column = i % logic.getGridSide();
