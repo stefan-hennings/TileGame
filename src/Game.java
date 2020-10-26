@@ -45,7 +45,10 @@ public class Game extends JFrame {
         setResizable(false);
         setTitle("Världens bästa brickspel, typ");
 
-        GameGraphics run = new GameGraphics(600,30,4);
+        run = new GameGraphics(600,30, slider.getValue());
+
+
+
 
 
         add(run, BorderLayout.CENTER);
