@@ -76,7 +76,7 @@ public class GameGraphics extends JPanel {
 
             if (logic.getTiles()[i] == 0) {
                 if (logic.isSolved()) {
-
+                    graphics2D.setFont(new Font("Serif", Font.BOLD, 60));
                     graphics2D.setColor(Color.ORANGE);
                     drawCenteredString(graphics2D, new StringBuilder().appendCodePoint(0x0001F947).toString(), xCoordinate, yCoordinate);
                 }
