@@ -21,6 +21,11 @@ public class GameGraphics extends JPanel {
     private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
 
+    //TODO: Adding options for changing color?
+    //TODO: Adding timer?
+    //TODO: Adding saving high score?
+    //TODO: Creating database to store high scores?
+
     public GameGraphics(int dimension, int margin, int gridSide) {
 
         logic = new GameLogic(gridSide);
