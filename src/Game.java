@@ -53,12 +53,14 @@ public class Game extends JFrame {
         add(run, BorderLayout.CENTER);
         movesText.setForeground(GameGraphics.FOREGROUND_COLOR);
         southPanel.setLayout(new GridLayout(2,0));
-        southPanel.add(movesText);
-        northPanel.add(startOverButton, BorderLayout.NORTH);
+        southPanel.add(movesText, BorderLayout.SOUTH);
+        northPanel.add(startOverButton, BorderLayout.CENTER);
+        northPanel.add(slider, BorderLayout.EAST);
         startOverButton.setFont(new Font("Serif", Font.BOLD, 25));
         startOverButton.setBackground(GameGraphics.FOREGROUND_COLOR);
         startOverButton.setForeground(Color.BLACK);
         startOverButton.addActionListener(e -> {
+
             run.callNewGame();
             run.repaint();
         });
