@@ -42,7 +42,6 @@ public class Game extends JFrame {
         southPanel.setBackground(Color.WHITE);
         northPanel.setLayout(new BorderLayout());
         setIconImage(icon.getImage());
-        setResizable(false);
         setTitle("Världens bästa brickspel, typ");
 
         run = new GameGraphics(600,30, slider.getValue());
@@ -67,11 +66,12 @@ public class Game extends JFrame {
         add(northPanel, BorderLayout.NORTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setResizable(false);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
-
     }
+
 
     public static void main(String[] args) {
         new Game();
