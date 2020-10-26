@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
-import java.util.concurrent.Flow;
 
 /**
  * Created by Julia Wigenstedt
@@ -38,10 +36,12 @@ public class GameGraphics extends JPanel {
         sizeOfGrid = (dimension - 2 * margin);
         sizeOfTile = sizeOfGrid / gridSide;
 
+
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
         setForeground(FOREGROUND_COLOR);
         setFont(new Font("Bell MT", Font.BOLD, 50));
+
 
         addMouseListener(new MouseAdapter() {
 
@@ -65,7 +65,9 @@ public class GameGraphics extends JPanel {
                     }
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
-                    logic.isSolved();
+                    if(logic.isSolved()){
+                        Game.getTimer().stop();
+                    }
                 }
                 repaint();
             }
@@ -88,6 +90,7 @@ public class GameGraphics extends JPanel {
                     graphics2D.setFont(new Font("Serif", Font.BOLD, 60));
                     graphics2D.setColor(Color.ORANGE);
                     drawCenteredString(graphics2D, new StringBuilder().appendCodePoint(0x0001F947).toString(), xCoordinate, yCoordinate);
+                    Game.getTimer().restart();
                 }
                 continue;
             }
@@ -97,11 +100,11 @@ public class GameGraphics extends JPanel {
                     new Color(0x7a4988));
             graphics2D.setPaint(rgp);
 //            graphics2D.setColor(getForeground());
-            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
+            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
 
             //we set the color again and draw the borders.
             graphics2D.setColor(Color.BLACK);
-            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
+            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
 
             graphics2D.setColor(Color.BLACK);
             drawCenteredString(graphics2D, String.valueOf(logic.getTiles()[i]), xCoordinate , yCoordinate);

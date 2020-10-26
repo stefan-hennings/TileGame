@@ -14,11 +14,36 @@ public class Game extends JFrame {
 
     private static JSlider slider;
     private final GameGraphics run;
+    private static Timer timer;
+    private JLabel timeLabel;
+    private int hours, minutes, seconds;
+    private static Font font = new Font("Bell MT", Font.PLAIN, 15);
+
 
 
 
     public Game(){
 
+        timeLabel = new JLabel("Tid: " + minutes + " : " + seconds);
+        timeLabel.setFont(new Font("Bell MT", Font.PLAIN, 15));
+        timeLabel.setForeground(GameGraphics.FOREGROUND_COLOR);
+        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        timer = new Timer(1000, e -> {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            timeLabel.setText("Tid: " + minutes + " : " + seconds);
+            if (hours > 0)
+                timeLabel.setText("Tid: " + hours + " : " + minutes + " : " + seconds);
+        });
+        timer.start();
         slider = new JSlider(JSlider.HORIZONTAL, 2,7, 4);
         slider.setMajorTickSpacing(1);
         slider.setFont(new Font("Bell MT", Font.PLAIN, 15));
