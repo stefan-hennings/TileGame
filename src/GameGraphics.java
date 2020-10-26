@@ -121,7 +121,8 @@ public class GameGraphics extends JPanel {
             g.setColor(FOREGROUND_COLOR);
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
-                    getHeight() - margin);
+                    getHeight()-margin);
+            repaint();
         }
     }
 
