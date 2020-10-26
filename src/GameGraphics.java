@@ -100,7 +100,7 @@ public class GameGraphics extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics graphics) {
+    public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics;  //Cast graphics object to Graphics2D object.
