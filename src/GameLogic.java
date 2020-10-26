@@ -207,7 +207,7 @@ public class GameLogic {
         return moveCount;
     }
 
-    public void setGridSide(int gridSide) {
+    public void changeGridParameters(int gridSide) {
         this.gridSide = gridSide;
         tiles = new int[gridSide * gridSide];
         numberOfTiles = gridSide *gridSide -1;
