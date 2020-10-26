@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class Game extends JFrame {
     // TODO: 22-Oct-20 Write code
@@ -10,12 +11,35 @@ public class Game extends JFrame {
 
 
     public Game(){
+        movesText = GameGraphics.getMovesText();
+        southPanel = GameGraphics.getSouthPanel();
+        southPanel.setBackground(Color.WHITE);
+        northPanel.setLayout(new BorderLayout());
         setIconImage(icon.getImage());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
         setTitle("Världens bästa brickspel, typ");
-        add(new GameGraphics(600,30, 4));
-        pack();
+
+        GameGraphics run = new GameGraphics(600,30,4);
+
+
+        add(run, BorderLayout.CENTER);
+        movesText.setForeground(GameGraphics.FOREGROUND_COLOR);
+        southPanel.setLayout(new GridLayout(2,0));
+        southPanel.add(movesText);
+        northPanel.add(startOverButton, BorderLayout.NORTH);
+        startOverButton.setFont(new Font("Serif", Font.BOLD, 25));
+        startOverButton.setBackground(GameGraphics.FOREGROUND_COLOR);
+        startOverButton.setForeground(Color.BLACK);
+        startOverButton.addActionListener(e -> {
+            run.callNewGame();
+            run.repaint();
+        });
+        add(southPanel, BorderLayout.SOUTH);
+        add(northPanel, BorderLayout.NORTH);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        pack();
         setVisible(true);
 
     }
