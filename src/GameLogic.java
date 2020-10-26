@@ -179,7 +179,7 @@ public class GameLogic {
                     tiles[i] = shuffler.get(i);
                 }
             }
-        }  while(!isSolvable());
+        }  while(!isSolvable() || isSolved());
     }
 
 
