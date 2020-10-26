@@ -58,24 +58,21 @@ public class Game extends JFrame {
                     run.getLogic().changeGridParameters(slider.getValue());
                     run.setSizeOfTile(slider.getValue());
                     run.paintComponent(run.getGraphics());
-                    run.callNewGame();
-                    repaint();
-                    pack();
+                    startNewGame();
                 }
             }
         });
         movesText = GameGraphics.getMovesText();
         southPanel = GameGraphics.getSouthPanel();
         southPanel.setBackground(Color.WHITE);
+        southPanel.add(timeLabel, BorderLayout.EAST);
         northPanel.setLayout(new BorderLayout());
+        northPanel.setBackground(GameGraphics.FOREGROUND_COLOR);
         setIconImage(icon.getImage());
         setTitle("Världens bästa brickspel, typ");
 
         run = new GameGraphics(600,30, slider.getValue());
-
-
-
-
+        startNewGame();
 
         add(run, BorderLayout.CENTER);
         movesText.setForeground(GameGraphics.FOREGROUND_COLOR);
@@ -86,10 +83,9 @@ public class Game extends JFrame {
         startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
         startOverButton.setBackground(GameGraphics.FOREGROUND_COLOR);
         startOverButton.setForeground(Color.BLACK);
+        startOverButton.setFocusPainted(false);
         startOverButton.addActionListener(e -> {
-
-            run.callNewGame();
-            run.repaint();
+            startNewGame();
         });
         topPanel.setLayout(new GridLayout(2,0));
         topPanel.add(northPanel);
@@ -107,5 +103,22 @@ public class Game extends JFrame {
 
     public static void main(String[] args) {
         new Game();
+    }
+
+    public void startNewGame(){
+        seconds=0;
+        minutes=0;
+        hours = 0;
+        timeLabel.setText("Tid: " + minutes + " : " + seconds);
+        if (hours > 0)
+            timeLabel.setText("Tid: " + hours + " : " + minutes + " : " + seconds);
+        run.callNewGame();
+        timer.start();
+        run.repaint();
+        pack();
+    }
+
+    public static Timer getTimer() {
+        return timer;
     }
 }
