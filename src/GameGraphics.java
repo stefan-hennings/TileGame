@@ -18,6 +18,9 @@ public class GameGraphics extends JPanel {
     private int sizeOfGrid;
     public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
 
+    private static JLabel movesText = new JLabel("");
+    private static final JPanel southPanel = new JPanel();
+
     public GameGraphics(int dimension, int margin, int gridSide) {
 
         logic = new GameLogic(gridSide);
@@ -35,32 +38,27 @@ public class GameGraphics extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
+
+                movesText.setText("");
+
                 if(logic.isSolved()){
                     logic.newGame();
                 } else {
                     int clickX = e.getX() - margin;
                     int clickY = e.getY() - margin;
-                    // If user clicks outside of grid, we return.
-                    if (clickX < 0 || clickX > sizeOfGrid  || clickY < 0  || clickY > sizeOfGrid) {
-                        return;
+                    logic.moveTiles(clickX, clickY, sizeOfGrid, sizeOfTile);
+
+                    movesText.setHorizontalAlignment(SwingConstants.CENTER);
+                    movesText.setFont(new Font("SansSerif", Font.BOLD, 15));
+                    movesText.setForeground(FOREGROUND_COLOR);
+                    if(logic.getMoveCount()>0) {
+                        movesText.setText("Antal moves: " + logic.getMoveCount());
                     }
-
-                    // Otherwise we get position in the grid
-
-                    int clickPositionColumn = clickX / sizeOfTile;
-                    int clickPositionRow = clickY / sizeOfTile;
-
-                    // We get the position of the blank cell
-
-                    int blankCellColumn = logic.getBlankPosition() % logic.getGridSide();
-                    int blankCellRow = logic.getBlankPosition() / logic.getGridSide();
-
-
-                    int clickPosition = clickPositionRow * logic.getGridSide() + clickPositionColumn;
-
-                    logic.moveTiles(clickPosition);
-
+                    southPanel.setBackground(Color.WHITE);
+                    southPanel.repaint();
+                    logic.isSolved();
                 }
+
                 repaint();
             }
         });
@@ -126,5 +124,17 @@ public class GameGraphics extends JPanel {
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
                     getHeight() - margin);
         }
+    }
+
+    public int getSizeOfTile() {
+        return sizeOfTile;
+    }
+
+    public static JPanel getSouthPanel() {
+        return southPanel;
+    }
+
+    public static JLabel getMovesText() {
+        return movesText;
     }
 }
