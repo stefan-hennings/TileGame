@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class Game extends JFrame {
@@ -9,8 +11,32 @@ public class Game extends JFrame {
     private static JLabel movesText;
     private static final JButton startOverButton = new JButton("Starta om");
 
+    private static JSlider slider;
+    private GameGraphics run;
+
+
 
     public Game(){
+
+        slider = new JSlider(JSlider.HORIZONTAL, 2,7, 4);
+        slider.setMajorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setBackground(GameGraphics.FOREGROUND_COLOR);
+
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(!slider.getValueIsAdjusting()){
+                    run.getLogic().changeGridParameters(slider.getValue());
+                    run.setSizeOfTile(slider.getValue());
+                    run.paintComponent(run.getGraphics());
+                    run.callNewGame();
+                    repaint();
+                    pack();
+                }
+            }
+        });
         movesText = GameGraphics.getMovesText();
         southPanel = GameGraphics.getSouthPanel();
         southPanel.setBackground(Color.WHITE);
