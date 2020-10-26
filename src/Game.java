@@ -97,7 +97,6 @@ public class Game extends JFrame {
         setVisible(true);
     }
 
-
     public static void main(String[] args) {
         new Game();
     }
@@ -117,5 +116,10 @@ public class Game extends JFrame {
 
     public static Timer getTimer() {
         return timer;
+    }
+
+    public static void getScoreInTime(){
+        int time = hours*3600+minutes*60+seconds;
+        System.out.println(time);
     }
 }
