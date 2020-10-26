@@ -137,4 +137,9 @@ public class GameGraphics extends JPanel {
     public static JLabel getMovesText() {
         return movesText;
     }
+
+    public void callNewGame(){
+        movesText.setText("");
+        logic.newGame();
+    }
 }
