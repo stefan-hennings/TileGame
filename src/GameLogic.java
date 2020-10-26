@@ -18,6 +18,7 @@ public class GameLogic {
     private int gridSide;
     private int blankPosition;
     private int moveCount = 0;
+    List<Integer> tilesToRotate;
 
     public GameLogic(int gridSide){
         this.gridSide = gridSide;
@@ -32,6 +33,8 @@ public class GameLogic {
     }
 
     public void moveTiles(int eX, int eY, int gridSize, int tileSize){
+
+        tilesToRotate = new ArrayList<>();
 
         if (eX < 0 || eX > gridSize  || eY < 0  || eY > gridSize) {
             return;
