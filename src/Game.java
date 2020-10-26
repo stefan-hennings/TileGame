@@ -11,15 +11,12 @@ public class Game extends JFrame {
     private static final JPanel topPanel = new JPanel();
     private static JLabel movesText;
     private static final JButton startOverButton = new JButton("Starta om");
-
     private static JSlider slider;
     private final GameGraphics run;
     private static Timer timer;
     private JLabel timeLabel;
-    private int hours, minutes, seconds;
+    private static int hours, minutes, seconds;
     private static Font font = new Font("Bell MT", Font.PLAIN, 15);
-
-
 
 
     public Game(){
