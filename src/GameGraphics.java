@@ -81,9 +81,8 @@ public class GameGraphics extends JPanel {
             if (logic.getTiles()[i] == 0) {
                 if (logic.isSolved()) {
 
-                    //TODO: Change message type from JOptionPane.
-
-                    JOptionPane.showMessageDialog(null, "Grattis, du vann!");
+                    graphics2D.setColor(Color.ORANGE);
+                    drawCenteredString(graphics2D, new StringBuilder().appendCodePoint(0x0001F947).toString(), xCoordinate, yCoordinate);
                 }
                 continue;
             }
