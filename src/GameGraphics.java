@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.concurrent.Flow;
 
 /**
  * Created by Julia Wigenstedt
@@ -88,7 +90,11 @@ public class GameGraphics extends JPanel {
                 continue;
             }
             // for other tiles, we first set the color of the tile and fill it.
-            graphics2D.setColor(getForeground());
+
+            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, FOREGROUND_COLOR, 600, yCoordinate,
+                    new Color(0x7a4988));
+            graphics2D.setPaint(rgp);
+//            graphics2D.setColor(getForeground());
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
 
             //we set the color again and draw the borders.
