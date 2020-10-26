@@ -157,6 +157,7 @@ public class GameLogic {
     }
 
     public void newGame() {
+        moveCount = 0;
         do {
             for (int i = 0; i < tiles.length; i++) {
                 tiles[i] = (i + 1) % tiles.length;
