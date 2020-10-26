@@ -3,6 +3,11 @@ import javax.swing.*;
 public class Game extends JFrame {
     // TODO: 22-Oct-20 Write code
     private static ImageIcon icon = new ImageIcon("numberfifteen.png");
+    private static JPanel southPanel = new JPanel();
+    private static JPanel northPanel = new JPanel();
+    private static JLabel movesText;
+    private static final JButton startOverButton = new JButton("Starta om");
+
 
     public Game(){
         setIconImage(icon.getImage());
