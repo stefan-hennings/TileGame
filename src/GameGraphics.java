@@ -58,15 +58,11 @@ public class GameGraphics extends JPanel {
                     southPanel.repaint();
                     logic.isSolved();
                 }
-
                 repaint();
             }
         });
-
         logic.newGame();
-
     }
-
 
     public void buildGrid(Graphics2D graphics2D) {
 
