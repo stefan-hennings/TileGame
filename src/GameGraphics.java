@@ -14,11 +14,11 @@ public class GameGraphics extends JPanel {
 
     GameLogic logic;
     private int sizeOfTile;
-    private int margin;
-    private int sizeOfGrid;
+    private final int margin;
+    private final int sizeOfGrid;
     public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
 
-    private static JLabel movesText = new JLabel("");
+    private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
 
     public GameGraphics(int dimension, int margin, int gridSide) {
@@ -120,10 +120,6 @@ public class GameGraphics extends JPanel {
                     getHeight()-margin);
             repaint();
         }
-    }
-
-    public int getSizeOfTile() {
-        return sizeOfTile;
     }
 
     public static JPanel getSouthPanel() {
