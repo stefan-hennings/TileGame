@@ -63,8 +63,8 @@ public class GamePanel extends JPanel {
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
                     if (logic.isSolved()) {
-                        Game.getTimer().stop();
-                        Game.loadAndSaveHighscore();
+                        GameFrame.getTimer().stop();
+                        GameFrame.loadAndSaveHighscore();
                     }
                 }
                 repaint();
@@ -88,7 +88,7 @@ public class GamePanel extends JPanel {
                     graphics2D.setFont(new Font("Serif", Font.BOLD, 60));
                     graphics2D.setColor(Color.ORANGE);
                     drawCenteredString(graphics2D, new StringBuilder().appendCodePoint(0x0001F947).toString(), xCoordinate, yCoordinate);
-                    Game.getTimer().restart();
+                    GameFrame.getTimer().restart();
                 }
                 continue;
             }
