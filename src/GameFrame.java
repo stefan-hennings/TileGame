@@ -25,10 +25,62 @@ public class GameFrame extends JFrame implements Serializable {
     private static List<Integer> highscore = new ArrayList<>();
 
     public GameFrame() {
+        setIconImage(icon.getImage());
+        setTitle("Världens bästa brickspel, typ");
 
+        createTimer();
+
+        createGridSizeSlider();
+
+        createTopPanel();
+
+
+        gamePanel = new GamePanel(600, 30, gridSizeSlider.getValue());
+        startNewGame();
+        add(gamePanel, BorderLayout.CENTER);
+
+
+        startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
+        startOverButton.setBackground(FOREGROUND_COLOR);
+        startOverButton.setForeground(Color.BLACK);
+        startOverButton.setFocusPainted(false);
+        startOverButton.addActionListener(e -> startNewGame());
+
+
+        add(topPanel, BorderLayout.NORTH);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void createTopPanel() {
+        moveCountLabel = new JLabel();
+        moveCountLabel.setForeground(FOREGROUND_COLOR);
+        moveCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        moveCountLabel.setFont(GameFrame.getSmallFont());
+        moveCountLabel.setForeground(FOREGROUND_COLOR);
+//        moveCountLabel.setText("Antal moves: " + GameLogic.getMoveCount());
+        statusPanel = GamePanel.getSouthPanel();
+        statusPanel.setBackground(Color.WHITE);
+        statusPanel.add(timerLabel, BorderLayout.EAST);
+        statusPanel.setLayout(new GridLayout(2, 0));
+        statusPanel.add(moveCountLabel, BorderLayout.SOUTH);
+        menuPanel.setLayout(new BorderLayout());
+        menuPanel.setBackground(FOREGROUND_COLOR);
+        menuPanel.add(startOverButton, BorderLayout.CENTER);
+        menuPanel.add(gridSizeSlider, BorderLayout.EAST);
+        topPanel.setLayout(new GridLayout(2, 0));
+        topPanel.add(menuPanel);
+        topPanel.add(statusPanel);
+    }
+
+    private void createTimer() {
         timerLabel = new JLabel("");
         timerLabel.setFont(smallFont);
-        timerLabel.setForeground(GamePanel.FOREGROUND_COLOR);
+        timerLabel.setForeground(FOREGROUND_COLOR);
         timerLabel.setHorizontalAlignment(JLabel.CENTER);
 
         timer = new Timer(1000, e -> {
@@ -44,57 +96,31 @@ public class GameFrame extends JFrame implements Serializable {
             updateTimerLabel();
         });
         timer.start();
-        slider = new JSlider(JSlider.HORIZONTAL, 2, 7, 4);
-        slider.setMajorTickSpacing(1);
-        slider.setFont(smallFont);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-        slider.setBackground(GamePanel.FOREGROUND_COLOR);
+    }
 
-        slider.addChangeListener(new ChangeListener() {
+    private void createGridSizeSlider() {
+        gridSizeSlider = new JSlider(JSlider.HORIZONTAL, 2, 7, 4);
+        gridSizeSlider.setMajorTickSpacing(1);
+        gridSizeSlider.setFont(smallFont);
+        gridSizeSlider.setPaintTicks(true);
+        gridSizeSlider.setPaintLabels(true);
+        gridSizeSlider.setBackground(FOREGROUND_COLOR);
+
+        gridSizeSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if (!slider.getValueIsAdjusting()) {
-                    gamePanel.getLogic().changeGridParameters(slider.getValue());
-                    gamePanel.setSizeOfTile(slider.getValue());
+                if (!gridSizeSlider.getValueIsAdjusting()) {
+                    gamePanel.getLogic().changeGridParameters(gridSizeSlider.getValue());
+                    gamePanel.setSizeOfTile(gridSizeSlider.getValue());
                     gamePanel.paintComponent(gamePanel.getGraphics());
                     startNewGame();
                 }
             }
         });
-        movesText = GamePanel.getMovesText();
-        southPanel = GamePanel.getSouthPanel();
-        southPanel.setBackground(Color.WHITE);
-        southPanel.add(timerLabel, BorderLayout.EAST);
-        northPanel.setLayout(new BorderLayout());
-        northPanel.setBackground(GamePanel.FOREGROUND_COLOR);
-        setIconImage(icon.getImage());
-        setTitle("Världens bästa brickspel, typ");
+    }
 
-        gamePanel = new GamePanel(600, 30, slider.getValue());
-        startNewGame();
-        add(gamePanel, BorderLayout.CENTER);
-        movesText.setForeground(GamePanel.FOREGROUND_COLOR);
-        southPanel.setLayout(new GridLayout(2, 0));
-        southPanel.add(movesText, BorderLayout.SOUTH);
-        northPanel.add(startOverButton, BorderLayout.CENTER);
-        northPanel.add(slider, BorderLayout.EAST);
-        startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
-        startOverButton.setBackground(GamePanel.FOREGROUND_COLOR);
-        startOverButton.setForeground(Color.BLACK);
-        startOverButton.setFocusPainted(false);
-        startOverButton.addActionListener(e -> startNewGame());
-        topPanel.setLayout(new GridLayout(2, 0));
-        topPanel.add(northPanel);
-        topPanel.add(southPanel);
-
-        add(topPanel, BorderLayout.NORTH);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+    public static void updateMoveCountLabel() {
+        moveCountLabel.setText(GameLogic.getMoveCount() > 0 ? "Antal moves: " + GameLogic.getMoveCount() : "");
     }
 
     private void updateTimerLabel() {
