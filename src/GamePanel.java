@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
  * Project: Inlämning3GUI
  * Copyright: MIT
  */
-public class GameGraphics extends JPanel {
+public class GamePanel extends JPanel {
 
     GameLogic logic;
     private int sizeOfTile;
@@ -21,7 +21,7 @@ public class GameGraphics extends JPanel {
     private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
 
-    public GameGraphics(int dimension, int margin, int gridSide) {
+    public GamePanel(int dimension, int margin, int gridSide) {
 
         logic = new GameLogic(gridSide);
         this.margin = margin;
