@@ -1,17 +1,14 @@
 import javax.swing.*;
-import javax.swing.Timer;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class GameFrame extends JFrame implements Serializable {
     public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
-    private static JPanel statusPanel = new JPanel();
     private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
     private static JLabel moveCountLabel;
@@ -62,8 +59,7 @@ public class GameFrame extends JFrame implements Serializable {
         moveCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
         moveCountLabel.setFont(GameFrame.getSmallFont());
         moveCountLabel.setForeground(FOREGROUND_COLOR);
-//        moveCountLabel.setText("Antal moves: " + GameLogic.getMoveCount());
-        statusPanel = GamePanel.getSouthPanel();
+        JPanel statusPanel = new JPanel();
         statusPanel.setBackground(Color.WHITE);
         statusPanel.add(timerLabel, BorderLayout.EAST);
         statusPanel.setLayout(new GridLayout(2, 0));
@@ -106,15 +102,12 @@ public class GameFrame extends JFrame implements Serializable {
         gridSizeSlider.setPaintLabels(true);
         gridSizeSlider.setBackground(FOREGROUND_COLOR);
 
-        gridSizeSlider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (!gridSizeSlider.getValueIsAdjusting()) {
-                    gamePanel.getLogic().changeGridParameters(gridSizeSlider.getValue());
-                    gamePanel.setSizeOfTile(gridSizeSlider.getValue());
-                    gamePanel.paintComponent(gamePanel.getGraphics());
-                    startNewGame();
-                }
+        gridSizeSlider.addChangeListener(e -> {
+            if (!gridSizeSlider.getValueIsAdjusting()) {
+                gamePanel.getLogic().changeGridParameters(gridSizeSlider.getValue());
+                gamePanel.setSizeOfTile(gridSizeSlider.getValue());
+                gamePanel.paintComponent(gamePanel.getGraphics());
+                startNewGame();
             }
         });
     }

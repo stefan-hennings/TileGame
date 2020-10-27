@@ -17,9 +17,6 @@ public class GamePanel extends JPanel {
     private final int margin;
     private final int sizeOfGrid;
 
-    private static final JPanel southPanel = new JPanel();
-
-
     //TODO: Adding options for changing color?
 
     //TODO: Adding saving high score?
@@ -51,10 +48,6 @@ public class GamePanel extends JPanel {
                     int clickY = e.getY() - margin;
                     logic.moveTiles(clickX, clickY, sizeOfGrid, sizeOfTile);
 
-
-
-                    southPanel.setBackground(Color.WHITE);
-                    southPanel.repaint();
                     if (logic.isSolved()) {
                         GameFrame.getTimer().stop();
                         GameFrame.loadAndSaveHighscore();
@@ -129,10 +122,6 @@ public class GamePanel extends JPanel {
                     getHeight() - margin);
             repaint();
         }
-    }
-
-    public static JPanel getSouthPanel() {
-        return southPanel;
     }
 
     public void callNewGame() {
