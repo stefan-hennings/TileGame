@@ -96,7 +96,7 @@ public class GameLogic {
         } else {
             return; //Illegal Move - do nothing
         }
-        this.blankPosition =clickedIndex;
+        this.blankPosition = clickedIndex;
         moveCount++;
     }
 
