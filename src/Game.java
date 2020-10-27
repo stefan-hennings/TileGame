@@ -3,6 +3,9 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.io.*;
+import java.util.*;
+import java.util.List;
 
 public class Game extends JFrame {
     // TODO: 22-Oct-20 Write code
@@ -18,7 +21,7 @@ public class Game extends JFrame {
     private JLabel timeLabel;
     private static int hours, minutes, seconds;
     private static Font font = new Font("Bell MT", Font.PLAIN, 15);
-
+    private static List<Integer> highscore = new ArrayList<>();
 
     public Game(){
 
@@ -122,5 +125,26 @@ public class Game extends JFrame {
     public static void getScoreInTime(){
         int time = hours*3600+minutes*60+seconds;
         System.out.println(time);
+    }
+
+    public static void serialize() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
+            out.writeObject(highscore);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void deSerialize() {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
+            highscore = (List<Integer>) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            System.out.println("Fil skapad");
+        }
     }
 }
