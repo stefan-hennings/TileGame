@@ -32,20 +32,12 @@ public class GameFrame extends JFrame implements Serializable {
 
         createTopPanel();
 
+        createStartOverButton();
 
         gamePanel = new GamePanel(600, 30, gridSizeSlider.getValue());
         add(gamePanel, BorderLayout.CENTER);
 
         startNewGame();
-        add(gamePanel, BorderLayout.CENTER);
-
-
-        startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
-        startOverButton.setBackground(FOREGROUND_COLOR);
-        startOverButton.setForeground(Color.BLACK);
-        startOverButton.setFocusPainted(false);
-        startOverButton.addActionListener(e -> startNewGame());
-
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -54,6 +46,14 @@ public class GameFrame extends JFrame implements Serializable {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void createStartOverButton() {
+        startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
+        startOverButton.setBackground(FOREGROUND_COLOR);
+        startOverButton.setForeground(Color.BLACK);
+        startOverButton.setFocusPainted(false);
+        startOverButton.addActionListener(e -> startNewGame());
     }
 
     private void createTopPanel() {
