@@ -7,7 +7,8 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 
-public class Game extends JFrame {
+
+public class Game extends JFrame implements Serializable {
     // TODO: 22-Oct-20 Write code
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
     private static JPanel southPanel = new JPanel();
@@ -122,9 +123,13 @@ public class Game extends JFrame {
         return timer;
     }
 
-    public static void getScoreInTime(){
-        int time = hours*3600+minutes*60+seconds;
-        System.out.println(time);
+    public static void loadAndSaveHighscore(){
+        deSerialize();
+        int score = hours*3600+minutes*60+seconds + GameLogic.getMoveCount();
+        highscore.add(score);
+        Collections.sort(highscore);
+        highscore.forEach(s-> System.out.println(s));
+        serialize();
     }
 
     public static void serialize() {
