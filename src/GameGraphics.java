@@ -24,7 +24,7 @@ public class GameGraphics extends JPanel {
 
 
     //TODO: Adding options for changing color?
-    //TODO: Adding timer?
+
     //TODO: Adding saving high score?
     //TODO: Creating database to store high scores?
 
@@ -67,6 +67,7 @@ public class GameGraphics extends JPanel {
                     southPanel.repaint();
                     if(logic.isSolved()){
                         Game.getTimer().stop();
+                        Game.loadAndSaveHighscore();
                     }
                 }
                 repaint();
