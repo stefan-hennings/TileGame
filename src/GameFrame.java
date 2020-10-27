@@ -12,15 +12,15 @@ public class GameFrame extends JFrame implements Serializable {
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
     private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
-    private static JLabel moveCountLabel;
     private static final JButton startOverButton = new JButton("Starta om");
+    private static final Font smallFont = new Font("Bell MT", Font.PLAIN, 15);
+    private static JLabel moveCountLabel;
     private static JSlider gridSizeSlider;
-    private final GamePanel gamePanel;
     private static Timer timer;
-    private JLabel timerLabel;
     private static int hours, minutes, seconds;
-    private static Font smallFont = new Font("Bell MT", Font.PLAIN, 15);
     private static List<Integer> highscore = new ArrayList<>();
+    private final GamePanel gamePanel;
+    private JLabel timerLabel;
 
     public GameFrame() {
         setIconImage(icon.getImage());
@@ -34,6 +34,8 @@ public class GameFrame extends JFrame implements Serializable {
 
 
         gamePanel = new GamePanel(600, 30, gridSizeSlider.getValue());
+        add(gamePanel, BorderLayout.CENTER);
+
         startNewGame();
         add(gamePanel, BorderLayout.CENTER);
 
@@ -60,15 +62,18 @@ public class GameFrame extends JFrame implements Serializable {
         moveCountLabel.setHorizontalAlignment(SwingConstants.CENTER);
         moveCountLabel.setFont(GameFrame.getSmallFont());
         moveCountLabel.setForeground(FOREGROUND_COLOR);
+
         JPanel statusPanel = new JPanel();
         statusPanel.setBackground(Color.WHITE);
         statusPanel.add(timerLabel, BorderLayout.EAST);
         statusPanel.setLayout(new GridLayout(2, 0));
         statusPanel.add(moveCountLabel, BorderLayout.SOUTH);
+
         menuPanel.setLayout(new BorderLayout());
         menuPanel.setBackground(FOREGROUND_COLOR);
         menuPanel.add(startOverButton, BorderLayout.CENTER);
         menuPanel.add(gridSizeSlider, BorderLayout.EAST);
+
         topPanel.setLayout(new GridLayout(2, 0));
         topPanel.add(menuPanel);
         topPanel.add(statusPanel);
