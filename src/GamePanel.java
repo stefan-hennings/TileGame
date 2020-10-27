@@ -16,9 +16,7 @@ public class GamePanel extends JPanel {
     private int sizeOfTile;
     private final int margin;
     private final int sizeOfGrid;
-    public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
 
-    private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
 
 
@@ -38,7 +36,7 @@ public class GamePanel extends JPanel {
 
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
-        setForeground(FOREGROUND_COLOR);
+        setForeground(GameFrame.FOREGROUND_COLOR);
         setFont(new Font("Bell MT", Font.BOLD, 50));
 
         addMouseListener(new MouseAdapter() {
@@ -53,12 +51,8 @@ public class GamePanel extends JPanel {
                     int clickY = e.getY() - margin;
                     logic.moveTiles(clickX, clickY, sizeOfGrid, sizeOfTile);
 
-                    movesText.setHorizontalAlignment(SwingConstants.CENTER);
-                    movesText.setFont(GameFrame.getSmallFont());
-                    movesText.setForeground(FOREGROUND_COLOR);
-                    if (GameLogic.getMoveCount() > 0) {
-                        movesText.setText("Antal moves: " + GameLogic.getMoveCount());
-                    }
+
+
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
                     if (logic.isSolved()) {
@@ -93,7 +87,7 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, FOREGROUND_COLOR, 600, yCoordinate,
+            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, GameFrame.FOREGROUND_COLOR, 600, yCoordinate,
                     new Color(0x7a4988));
             graphics2D.setPaint(rgp);
 //            graphics2D.setColor(getForeground());
@@ -129,7 +123,7 @@ public class GamePanel extends JPanel {
     private void drawStartMessage(Graphics2D g) {
         if (logic.isSolved()) {
             g.setFont(getFont().deriveFont(Font.BOLD, 25));
-            g.setColor(FOREGROUND_COLOR);
+            g.setColor(GameFrame.FOREGROUND_COLOR);
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
                     getHeight() - margin);
@@ -141,13 +135,9 @@ public class GamePanel extends JPanel {
         return southPanel;
     }
 
-    public static JLabel getMovesText() {
-        return movesText;
-    }
-
     public void callNewGame() {
-        movesText.setText("");
         logic.newGame();
+        GameFrame.updateMoveCountLabel();
     }
 
     public GameLogic getLogic() {

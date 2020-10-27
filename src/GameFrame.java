@@ -11,12 +11,12 @@ import java.util.List;
 public class GameFrame extends JFrame implements Serializable {
     public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
-    private static JPanel southPanel = new JPanel();
-    private static final JPanel northPanel = new JPanel();
+    private static JPanel statusPanel = new JPanel();
+    private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
-    private static JLabel movesText;
+    private static JLabel moveCountLabel;
     private static final JButton startOverButton = new JButton("Starta om");
-    private static JSlider slider;
+    private static JSlider gridSizeSlider;
     private final GamePanel gamePanel;
     private static Timer timer;
     private JLabel timerLabel;

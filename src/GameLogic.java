@@ -96,6 +96,7 @@ public class GameLogic {
         }
         this.blankPosition = clickedIndex;
         moveCount++;
+        GameFrame.updateMoveCountLabel();
     }
 
     public boolean isSolved() {
