@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class GameFrame extends JFrame implements Serializable {
-    // TODO: 22-Oct-20 Write code
+    public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
     private static JPanel southPanel = new JPanel();
     private static final JPanel northPanel = new JPanel();
