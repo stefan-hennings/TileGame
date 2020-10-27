@@ -19,9 +19,6 @@ public class GamePanel extends JPanel {
 
     //TODO: Adding options for changing color?
 
-    //TODO: Adding saving high score?
-    //TODO: Creating database to store high scores?
-
     public GamePanel(int dimension, int margin, int gridSide) {
 
         logic = new GameLogic(gridSide);
