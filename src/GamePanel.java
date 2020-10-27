@@ -41,7 +41,6 @@ public class GamePanel extends JPanel {
         setForeground(FOREGROUND_COLOR);
         setFont(new Font("Bell MT", Font.BOLD, 50));
 
-
         addMouseListener(new MouseAdapter() {
 
             @Override
@@ -55,7 +54,7 @@ public class GamePanel extends JPanel {
                     logic.moveTiles(clickX, clickY, sizeOfGrid, sizeOfTile);
 
                     movesText.setHorizontalAlignment(SwingConstants.CENTER);
-                    movesText.setFont(new Font("Bell MT", Font.BOLD, 15));
+                    movesText.setFont(GameFrame.getSmallFont());
                     movesText.setForeground(FOREGROUND_COLOR);
                     if (GameLogic.getMoveCount() > 0) {
                         movesText.setText("Antal moves: " + GameLogic.getMoveCount());

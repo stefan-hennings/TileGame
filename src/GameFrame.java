@@ -46,7 +46,7 @@ public class GameFrame extends JFrame implements Serializable {
         timer.start();
         slider = new JSlider(JSlider.HORIZONTAL, 2, 7, 4);
         slider.setMajorTickSpacing(1);
-        slider.setFont(new Font("Bell MT", Font.PLAIN, 15));
+        slider.setFont(smallFont);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setBackground(GamePanel.FOREGROUND_COLOR);
@@ -116,6 +116,10 @@ public class GameFrame extends JFrame implements Serializable {
 
     public static Timer getTimer() {
         return timer;
+    }
+
+    public static Font getSmallFont() {
+        return smallFont;
     }
 
     public static void loadAndSaveHighscore() {
