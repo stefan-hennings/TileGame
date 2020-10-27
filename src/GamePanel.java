@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
  * Project: Inlämning3GUI
  * Copyright: MIT
  */
-public class GameGraphics extends JPanel {
+public class GamePanel extends JPanel {
 
     GameLogic logic;
     private int sizeOfTile;
@@ -27,7 +27,7 @@ public class GameGraphics extends JPanel {
     //TODO: Adding saving high score?
     //TODO: Creating database to store high scores?
 
-    public GameGraphics(int dimension, int margin, int gridSide) {
+    public GamePanel(int dimension, int margin, int gridSide) {
 
         logic = new GameLogic(gridSide);
         this.margin = margin;
@@ -46,8 +46,6 @@ public class GameGraphics extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
-
-                movesText.setText("");
 
                 if (logic.isSolved()) {
                     logic.newGame();
