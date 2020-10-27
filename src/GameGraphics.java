@@ -20,6 +20,13 @@ public class GameGraphics extends JPanel {
 
     private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
+    private int arcWidth;
+
+
+    //TODO: Adding options for changing color?
+
+    //TODO: Adding saving high score?
+    //TODO: Creating database to store high scores?
 
     public GameGraphics(int dimension, int margin, int gridSide) {
 
@@ -29,10 +36,12 @@ public class GameGraphics extends JPanel {
         sizeOfGrid = (dimension - 2 * margin);
         sizeOfTile = sizeOfGrid / gridSide;
 
+
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
         setForeground(FOREGROUND_COLOR);
         setFont(new Font("Bell MT", Font.BOLD, 50));
+
 
         addMouseListener(new MouseAdapter() {
 
@@ -56,7 +65,10 @@ public class GameGraphics extends JPanel {
                     }
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
-                    logic.isSolved();
+                    if(logic.isSolved()){
+                        Game.getTimer().stop();
+                        Game.loadAndSaveHighscore();
+                    }
                 }
                 repaint();
             }
@@ -65,7 +77,7 @@ public class GameGraphics extends JPanel {
     }
 
     public void buildGrid(Graphics2D graphics2D) {
-
+        arcWidth = sizeOfTile/2;
         for (int i = 0; i < logic.getTiles().length; i++) {
 
             int column = i % logic.getGridSide();
@@ -79,16 +91,21 @@ public class GameGraphics extends JPanel {
                     graphics2D.setFont(new Font("Serif", Font.BOLD, 60));
                     graphics2D.setColor(Color.ORANGE);
                     drawCenteredString(graphics2D, new StringBuilder().appendCodePoint(0x0001F947).toString(), xCoordinate, yCoordinate);
+                    Game.getTimer().restart();
                 }
                 continue;
             }
             // for other tiles, we first set the color of the tile and fill it.
-            graphics2D.setColor(getForeground());
-            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
+
+            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, FOREGROUND_COLOR, 600, yCoordinate,
+                    new Color(0x7a4988));
+            graphics2D.setPaint(rgp);
+//            graphics2D.setColor(getForeground());
+            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
 
             //we set the color again and draw the borders.
             graphics2D.setColor(Color.BLACK);
-            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
+            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
 
             graphics2D.setColor(Color.BLACK);
             drawCenteredString(graphics2D, String.valueOf(logic.getTiles()[i]), xCoordinate, yCoordinate);
