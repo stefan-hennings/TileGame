@@ -16,10 +16,9 @@ public class Game extends JFrame {
     private final GameGraphics run;
 
 
+    public Game() {
 
-    public Game(){
-
-        slider = new JSlider(JSlider.HORIZONTAL, 2,7, 4);
+        slider = new JSlider(JSlider.HORIZONTAL, 2, 7, 4);
         slider.setMajorTickSpacing(1);
         slider.setFont(new Font("Bell MT", Font.PLAIN, 15));
         slider.setPaintTicks(true);
@@ -29,7 +28,7 @@ public class Game extends JFrame {
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(!slider.getValueIsAdjusting()){
+                if (!slider.getValueIsAdjusting()) {
                     run.getLogic().changeGridParameters(slider.getValue());
                     run.setSizeOfTile(slider.getValue());
                     run.paintComponent(run.getGraphics());
@@ -46,15 +45,12 @@ public class Game extends JFrame {
         setIconImage(icon.getImage());
         setTitle("Världens bästa brickspel, typ");
 
-        run = new GameGraphics(600,30, slider.getValue());
-
-
-
+        run = new GameGraphics(600, 30, slider.getValue());
 
 
         add(run, BorderLayout.CENTER);
         movesText.setForeground(GameGraphics.FOREGROUND_COLOR);
-        southPanel.setLayout(new GridLayout(2,0));
+        southPanel.setLayout(new GridLayout(2, 0));
         southPanel.add(movesText, BorderLayout.SOUTH);
         northPanel.add(startOverButton, BorderLayout.CENTER);
         northPanel.add(slider, BorderLayout.EAST);
@@ -66,7 +62,7 @@ public class Game extends JFrame {
             run.callNewGame();
             run.repaint();
         });
-        topPanel.setLayout(new GridLayout(2,0));
+        topPanel.setLayout(new GridLayout(2, 0));
         topPanel.add(northPanel);
         topPanel.add(southPanel);
 

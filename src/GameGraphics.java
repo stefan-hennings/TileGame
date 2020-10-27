@@ -41,7 +41,7 @@ public class GameGraphics extends JPanel {
 
                 movesText.setText("");
 
-                if(logic.isSolved()){
+                if (logic.isSolved()) {
                     logic.newGame();
                 } else {
                     int clickX = e.getX() - margin;
@@ -51,7 +51,7 @@ public class GameGraphics extends JPanel {
                     movesText.setHorizontalAlignment(SwingConstants.CENTER);
                     movesText.setFont(new Font("Bell MT", Font.BOLD, 15));
                     movesText.setForeground(FOREGROUND_COLOR);
-                    if(logic.getMoveCount()>0) {
+                    if (logic.getMoveCount() > 0) {
                         movesText.setText("Antal moves: " + logic.getMoveCount());
                     }
                     southPanel.setBackground(Color.WHITE);
@@ -91,7 +91,7 @@ public class GameGraphics extends JPanel {
             graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, 75, 75);
 
             graphics2D.setColor(Color.BLACK);
-            drawCenteredString(graphics2D, String.valueOf(logic.getTiles()[i]), xCoordinate , yCoordinate);
+            drawCenteredString(graphics2D, String.valueOf(logic.getTiles()[i]), xCoordinate, yCoordinate);
         }
     }
 
@@ -105,19 +105,21 @@ public class GameGraphics extends JPanel {
         buildGrid(graphics2D);
         drawStartMessage(graphics2D);
     }
+
     private void drawCenteredString(Graphics2D graphics, String string, int xCoordinate, int yCoordinate) {
 
         FontMetrics fontMetrics = graphics.getFontMetrics();
-        graphics.drawString(string,  xCoordinate + (sizeOfTile - fontMetrics.stringWidth(string)) / 2,
+        graphics.drawString(string, xCoordinate + (sizeOfTile - fontMetrics.stringWidth(string)) / 2,
                 yCoordinate + (fontMetrics.getAscent() + (sizeOfTile - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
     }
+
     private void drawStartMessage(Graphics2D g) {
         if (logic.isSolved()) {
             g.setFont(getFont().deriveFont(Font.BOLD, 25));
             g.setColor(FOREGROUND_COLOR);
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
-                    getHeight()-margin);
+                    getHeight() - margin);
             repaint();
         }
     }
@@ -130,7 +132,7 @@ public class GameGraphics extends JPanel {
         return movesText;
     }
 
-    public void callNewGame(){
+    public void callNewGame() {
         movesText.setText("");
         logic.newGame();
     }
@@ -140,6 +142,6 @@ public class GameGraphics extends JPanel {
     }
 
     public void setSizeOfTile(int gridSide) {
-         sizeOfTile = sizeOfGrid/gridSide;
+        sizeOfTile = sizeOfGrid / gridSide;
     }
 }

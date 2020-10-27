@@ -19,21 +19,21 @@ public class GameLogic {
     private int blankPosition;
     private int moveCount = 0;
 
-    public GameLogic(int gridSide){
+    public GameLogic(int gridSide) {
         this.gridSide = gridSide;
         tiles = new int[this.gridSide * this.gridSide];
-        numberOfTiles = this.gridSide *this.gridSide -1;
+        numberOfTiles = this.gridSide * this.gridSide - 1;
 
         shuffler = new ArrayList<>();
 
-        for(int i = 1; i<(this.gridSide *this.gridSide); i++){
+        for (int i = 1; i < (this.gridSide * this.gridSide); i++) {
             shuffler.add(i);
         }
     }
 
-    public void moveTiles(int eX, int eY, int gridSize, int tileSize){
+    public void moveTiles(int eX, int eY, int gridSize, int tileSize) {
 
-        if (eX < 0 || eX > gridSize  || eY < 0  || eY > gridSize) {
+        if (eX < 0 || eX > gridSize || eY < 0 || eY > gridSize) {
             return;
         }
 
@@ -48,7 +48,7 @@ public class GameLogic {
 
         int direction = 0;
 
-        if (clickPositionColumn == blankCellColumn  &&  Math.abs(clickPositionRow - blankCellRow) > 0) {
+        if (clickPositionColumn == blankCellColumn && Math.abs(clickPositionRow - blankCellRow) > 0) {
 
             direction = (clickPositionRow - blankCellRow) > 0 ? gridSide : -gridSide;
 
@@ -64,12 +64,11 @@ public class GameLogic {
                 tiles[blankPosition] = tiles[newBlankPosition];
                 blankPosition = newBlankPosition;
 
-            } while(blankPosition != clickPosition);
+            } while (blankPosition != clickPosition);
             tiles[blankPosition] = 0;
 
             moveCount++;
         }
-
 
 
 //        int clickedIndex = 0;
@@ -152,7 +151,7 @@ public class GameLogic {
         return true;
     }
 
-    public boolean isSolvable(){
+    public boolean isSolvable() {
         int inversionCount = 0;
 
         for (int i = 0; i < numberOfTiles; i++) {
@@ -179,9 +178,8 @@ public class GameLogic {
                     tiles[i] = shuffler.get(i);
                 }
             }
-        }  while(!isSolvable() || isSolved());
+        } while (!isSolvable() || isSolved());
     }
-
 
 
     public int[] getTiles() {
@@ -199,7 +197,8 @@ public class GameLogic {
     public void setBlankPosition(int blankPosition) {
         this.blankPosition = blankPosition;
     }
-    public void changeArray(int index, int newNumber){
+
+    public void changeArray(int index, int newNumber) {
         tiles[index] = newNumber;
     }
 
@@ -210,10 +209,10 @@ public class GameLogic {
     public void changeGridParameters(int gridSide) {
         this.gridSide = gridSide;
         tiles = new int[gridSide * gridSide];
-        numberOfTiles = gridSide *gridSide -1;
+        numberOfTiles = gridSide * gridSide - 1;
         shuffler = new ArrayList<>();
 
-        for(int i = 1; i<(this.gridSide *this.gridSide); i++){
+        for (int i = 1; i < (this.gridSide * this.gridSide); i++) {
             shuffler.add(i);
         }
     }
