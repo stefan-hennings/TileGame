@@ -7,7 +7,8 @@ import java.util.List;
 
 
 public class GameFrame extends JFrame implements Serializable {
-    public static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
+
+    private static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
     private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
@@ -139,6 +140,10 @@ public class GameFrame extends JFrame implements Serializable {
 
     public static Font getSmallFont() {
         return smallFont;
+    }
+
+    public static Color getForegroundColor() {
+        return FOREGROUND_COLOR;
     }
 
     public static void loadAndSaveHighscore() {

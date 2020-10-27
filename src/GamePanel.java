@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
 
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setBackground(Color.WHITE);
-        setForeground(GameFrame.FOREGROUND_COLOR);
+        setForeground(GameFrame.getForegroundColor());
         setFont(new Font("Bell MT", Font.BOLD, 50));
 
         addMouseListener(new MouseAdapter() {
@@ -80,10 +80,9 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, GameFrame.FOREGROUND_COLOR, 600, yCoordinate,
-                    new Color(0x7a4988));
+            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, GameFrame.getForegroundColor(), 600,
+                    yCoordinate, new Color(0x7a4988));
             graphics2D.setPaint(rgp);
-//            graphics2D.setColor(getForeground());
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
             //we set the color again and draw the borders.
@@ -116,7 +115,7 @@ public class GamePanel extends JPanel {
     private void drawStartMessage(Graphics2D g) {
         if (logic.isSolved()) {
             g.setFont(getFont().deriveFont(Font.BOLD, 25));
-            g.setColor(GameFrame.FOREGROUND_COLOR);
+            g.setColor(GameFrame.getForegroundColor());
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
                     getHeight() - margin);
