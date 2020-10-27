@@ -17,7 +17,7 @@ public class GameLogic {
     List<Integer> shuffler;
     private int gridSide;
     private int blankPosition;
-    private int moveCount = 0;
+    private static int moveCount = 0;
     List<Integer> tilesToRotate;
 
     public GameLogic(int gridSide){
@@ -163,7 +163,7 @@ public class GameLogic {
         tiles[index] = newNumber;
     }
 
-    public int getMoveCount() {
+    public static int getMoveCount() {
         return moveCount;
     }
 
