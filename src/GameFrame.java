@@ -19,17 +19,17 @@ public class GameFrame extends JFrame implements Serializable {
     private static JSlider slider;
     private final GamePanel gamePanel;
     private static Timer timer;
-    private JLabel timeLabel;
+    private JLabel timerLabel;
     private static int hours, minutes, seconds;
     private static Font smallFont = new Font("Bell MT", Font.PLAIN, 15);
     private static List<Integer> highscore = new ArrayList<>();
 
     public GameFrame() {
 
-        timeLabel = new JLabel("Tid: " + minutes + " : " + seconds);
-        timeLabel.setFont(smallFont);
-        timeLabel.setForeground(GamePanel.FOREGROUND_COLOR);
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        timerLabel = new JLabel("");
+        timerLabel.setFont(smallFont);
+        timerLabel.setForeground(GamePanel.FOREGROUND_COLOR);
+        timerLabel.setHorizontalAlignment(JLabel.CENTER);
 
         timer = new Timer(1000, e -> {
             seconds++;
@@ -41,9 +41,7 @@ public class GameFrame extends JFrame implements Serializable {
                     hours++;
                 }
             }
-            timeLabel.setText("Tid: " + minutes + " : " + seconds);
-            if (hours > 0)
-                timeLabel.setText("Tid: " + hours + " : " + minutes + " : " + seconds);
+            updateTimerLabel();
         });
         timer.start();
         slider = new JSlider(JSlider.HORIZONTAL, 2, 7, 4);
@@ -67,7 +65,7 @@ public class GameFrame extends JFrame implements Serializable {
         movesText = GamePanel.getMovesText();
         southPanel = GamePanel.getSouthPanel();
         southPanel.setBackground(Color.WHITE);
-        southPanel.add(timeLabel, BorderLayout.EAST);
+        southPanel.add(timerLabel, BorderLayout.EAST);
         northPanel.setLayout(new BorderLayout());
         northPanel.setBackground(GamePanel.FOREGROUND_COLOR);
         setIconImage(icon.getImage());
@@ -99,13 +97,17 @@ public class GameFrame extends JFrame implements Serializable {
         setVisible(true);
     }
 
+    private void updateTimerLabel() {
+        timerLabel.setText(String.format("Tid: %02d:%02d", minutes, seconds));
+        if (hours > 0)
+            timerLabel.setText(String.format("Tid: %02d:%02d:%02d", hours, minutes, seconds));
+    }
+
     public void startNewGame() {
         seconds = 0;
         minutes = 0;
         hours = 0;
-        timeLabel.setText("Tid: " + minutes + " : " + seconds);
-        if (hours > 0)
-            timeLabel.setText("Tid: " + hours + " : " + minutes + " : " + seconds);
+        updateTimerLabel();
         gamePanel.callNewGame();
         timer.start();
         gamePanel.repaint();
