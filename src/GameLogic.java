@@ -48,10 +48,9 @@ public class GameLogic {
 
         int clickedIndex = clickedRow * gridSide + clickedColumn;
 
-        if(clickedIndex==blankPosition){
+        if (clickedIndex == blankPosition) {
             return;
-        }
-        else if (clickedRow == blackRow) {
+        } else if (clickedRow == blackRow) {
             if (clickedColumn < blackColumn) {
                 for (int i = clickedIndex; i <= blankPosition; i++) {
                     tilesToRotate.add(tiles[i]);

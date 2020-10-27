@@ -18,7 +18,7 @@ public class Game extends JFrame implements Serializable {
     private static final JButton startOverButton = new JButton("Starta om");
     private static JSlider slider;
     private final GamePanel run;
-private static Timer timer;
+    private static Timer timer;
     private JLabel timeLabel;
     private static int hours, minutes, seconds;
     private static Font smallFont = new Font("Bell MT", Font.PLAIN, 15);
@@ -28,7 +28,7 @@ private static Timer timer;
 
         timeLabel = new JLabel("Tid: " + minutes + " : " + seconds);
         timeLabel.setFont(smallFont);
-        timeLabel.setForeground(GameGraphics.FOREGROUND_COLOR);
+        timeLabel.setForeground(GamePanel.FOREGROUND_COLOR);
         timeLabel.setHorizontalAlignment(JLabel.CENTER);
 
         timer = new Timer(1000, e -> {
@@ -69,12 +69,12 @@ private static Timer timer;
         southPanel.setBackground(Color.WHITE);
         southPanel.add(timeLabel, BorderLayout.EAST);
         northPanel.setLayout(new BorderLayout());
-        northPanel.setBackground(GameGraphics.FOREGROUND_COLOR);
+        northPanel.setBackground(GamePanel.FOREGROUND_COLOR);
         setIconImage(icon.getImage());
         setTitle("Världens bästa brickspel, typ");
 
         run = new GamePanel(600, 30, slider.getValue());
-startNewGame();
+        startNewGame();
         add(run, BorderLayout.CENTER);
         movesText.setForeground(GamePanel.FOREGROUND_COLOR);
         southPanel.setLayout(new GridLayout(2, 0));
@@ -103,9 +103,9 @@ startNewGame();
         new Game();
     }
 
-    public void startNewGame(){
-        seconds=0;
-        minutes=0;
+    public void startNewGame() {
+        seconds = 0;
+        minutes = 0;
         hours = 0;
         timeLabel.setText("Tid: " + minutes + " : " + seconds);
         if (hours > 0)
@@ -120,9 +120,9 @@ startNewGame();
         return timer;
     }
 
-    public static void loadAndSaveHighscore(){
+    public static void loadAndSaveHighscore() {
         deSerialize();
-        int score = hours*3600+minutes*60+seconds + GameLogic.getMoveCount();
+        int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
         highscore.add(score);
         Collections.sort(highscore);
         highscore.forEach(System.out::println);

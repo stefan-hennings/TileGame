@@ -62,7 +62,7 @@ public class GamePanel extends JPanel {
                     }
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
-                    if(logic.isSolved()){
+                    if (logic.isSolved()) {
                         Game.getTimer().stop();
                         Game.loadAndSaveHighscore();
                     }
