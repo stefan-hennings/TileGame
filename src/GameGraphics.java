@@ -20,7 +20,6 @@ public class GameGraphics extends JPanel {
 
     private static final JLabel movesText = new JLabel("");
     private static final JPanel southPanel = new JPanel();
-    private int arcWidth;
 
 
     //TODO: Adding options for changing color?
@@ -60,8 +59,8 @@ public class GameGraphics extends JPanel {
                     movesText.setHorizontalAlignment(SwingConstants.CENTER);
                     movesText.setFont(new Font("Bell MT", Font.BOLD, 15));
                     movesText.setForeground(FOREGROUND_COLOR);
-                    if (logic.getMoveCount() > 0) {
-                        movesText.setText("Antal moves: " + logic.getMoveCount());
+                    if (GameLogic.getMoveCount() > 0) {
+                        movesText.setText("Antal moves: " + GameLogic.getMoveCount());
                     }
                     southPanel.setBackground(Color.WHITE);
                     southPanel.repaint();
@@ -77,7 +76,7 @@ public class GameGraphics extends JPanel {
     }
 
     public void buildGrid(Graphics2D graphics2D) {
-        arcWidth = sizeOfTile/2;
+        int arc = sizeOfTile / 2;
         for (int i = 0; i < logic.getTiles().length; i++) {
 
             int column = i % logic.getGridSide();
@@ -101,11 +100,11 @@ public class GameGraphics extends JPanel {
                     new Color(0x7a4988));
             graphics2D.setPaint(rgp);
 //            graphics2D.setColor(getForeground());
-            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
+            graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
             //we set the color again and draw the borders.
             graphics2D.setColor(Color.BLACK);
-            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arcWidth, arcWidth);
+            graphics2D.drawRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
             graphics2D.setColor(Color.BLACK);
             drawCenteredString(graphics2D, String.valueOf(logic.getTiles()[i]), xCoordinate, yCoordinate);

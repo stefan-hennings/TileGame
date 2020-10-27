@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -149,18 +148,6 @@ public class GameLogic {
 
     public int getGridSide() {
         return gridSide;
-    }
-
-    public int getBlankPosition() {
-        return blankPosition;
-    }
-
-    public void setBlankPosition(int blankPosition) {
-        this.blankPosition = blankPosition;
-    }
-
-    public void changeArray(int index, int newNumber) {
-        tiles[index] = newNumber;
     }
 
     public static int getMoveCount() {

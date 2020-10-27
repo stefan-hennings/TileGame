@@ -21,13 +21,13 @@ public class Game extends JFrame implements Serializable {
 private static Timer timer;
     private JLabel timeLabel;
     private static int hours, minutes, seconds;
-    private static Font font = new Font("Bell MT", Font.PLAIN, 15);
+    private static Font smallFont = new Font("Bell MT", Font.PLAIN, 15);
     private static List<Integer> highscore = new ArrayList<>();
 
     public Game() {
 
         timeLabel = new JLabel("Tid: " + minutes + " : " + seconds);
-        timeLabel.setFont(new Font("Bell MT", Font.PLAIN, 15));
+        timeLabel.setFont(smallFont);
         timeLabel.setForeground(GameGraphics.FOREGROUND_COLOR);
         timeLabel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -85,9 +85,7 @@ startNewGame();
         startOverButton.setBackground(GameGraphics.FOREGROUND_COLOR);
         startOverButton.setForeground(Color.BLACK);
         startOverButton.setFocusPainted(false);
-        startOverButton.addActionListener(e -> {
-            startNewGame();
-        });
+        startOverButton.addActionListener(e -> startNewGame());
         topPanel.setLayout(new GridLayout(2, 0));
         topPanel.add(northPanel);
         topPanel.add(southPanel);
@@ -127,7 +125,7 @@ startNewGame();
         int score = hours*3600+minutes*60+seconds + GameLogic.getMoveCount();
         highscore.add(score);
         Collections.sort(highscore);
-        highscore.forEach(s-> System.out.println(s));
+        highscore.forEach(System.out::println);
         serialize();
     }
 
