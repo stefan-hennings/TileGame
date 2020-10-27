@@ -39,8 +39,6 @@ public class GameGraphics extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
 
-                movesText.setText("");
-
                 if (logic.isSolved()) {
                     logic.newGame();
                 } else {

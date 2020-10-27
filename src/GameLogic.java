@@ -31,15 +31,15 @@ public class GameLogic {
         }
     }
 
-    public void moveTiles(int eX, int eY, int gridSize, int tileSize) {
+    public void moveTiles(int clickedXPixel, int clickedYPixel, int gridPixelWidth, int tilePixelWidth) {
 
-        if (eX < 0 || eX > gridSize || eY < 0 || eY > gridSize) {
+        if (clickedXPixel < 0 || clickedXPixel > gridPixelWidth || clickedYPixel < 0 || clickedYPixel > gridPixelWidth) {
             return;
         }
 
         // Otherwise we get position in the grid
-        int clickPositionColumn = eX / tileSize;
-        int clickPositionRow = eY / tileSize;
+        int clickPositionColumn = clickedXPixel / tilePixelWidth;
+        int clickPositionRow = clickedYPixel / tilePixelWidth;
 
         int blankCellColumn = blankPosition % gridSide;
         int blankCellRow = blankPosition / gridSide;
