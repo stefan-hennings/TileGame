@@ -30,7 +30,7 @@ public class GameLogic {
     private void resetShuffler() {
         shuffler = new ArrayList<>();
 
-        for (int i = 1; i < (this.gridSide * this.gridSide); i++) {
+        for (int i = 0; i < (this.gridSide * this.gridSide); i++) {
             shuffler.add(i);
         }
     }
@@ -162,10 +162,12 @@ public class GameLogic {
 //                }
 //            }
 
-            blankPosition = tiles.length - 1;
             Collections.shuffle(shuffler);
-            for (int i = 0; i < tiles.length - 1; i++) {
+            for (int i = 0; i < tiles.length; i++) {
                 tiles[i] = shuffler.get(i);
+                if (shuffler.get(i) == 0) {
+                    blankPosition = i;
+                }
             }
         } while (!isSolvable() || isSolved());
     }
