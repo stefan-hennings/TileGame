@@ -50,9 +50,8 @@ public class OptionsPanel extends JPanel {
 
                 if (clickX >= xCoordinate && clickX <= 425 && clickY >= 125 && clickY <= 200) {
                     button = 0;
-                    System.out.println(highscoreInStringFormat());
-
-                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
+                    HighScore.deSerialize();
+                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "4");
                     GameFrame.getTopPanel().repaint();
                     GameFrame.getMenuPanel().repaint();
                     GameFrame.startNewGame();
@@ -120,18 +119,6 @@ public class OptionsPanel extends JPanel {
         } catch (Exception e) {
             System.out.println("Fil skapad");
         }
-    }
-
-    //method in place of real high-score view.
-    public String highscoreInStringFormat() {
-        deSerialize();
-        StringBuilder stringBuilder = new StringBuilder("High-Score:\n\n");
-
-        highscore.forEach(score -> {
-            stringBuilder.append(score);
-            stringBuilder.append("\n");
-        });
-        return stringBuilder.toString();
     }
 
     public static int getButton() {
