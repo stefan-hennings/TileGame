@@ -102,7 +102,9 @@ public class OptionsPanel extends JPanel {
 
         for (int i = 200; i < 650; i += 150) {
 
-            graphics2D.setPaint(gradientPaints[0]);
+        for (int i = 0; i < 3; i ++) {
+
+            graphics2D.setPaint(gradientPaints[ColorPanel.getPaintNumber()]);
             graphics2D.setPaint(graphics2D.getPaint());
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, 250, 75, 50, 50);
 
