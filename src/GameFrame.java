@@ -206,11 +206,24 @@ public class GameFrame extends JFrame implements Serializable {
     }
 
     public static void loadAndSaveHighscore() {
+        setJOptionPaneProperties();
         HighScore.deSerialize();
+
+        String name=null;
+        while(name == null || name.isEmpty()) {
+            name = (String) JOptionPane.showInputDialog(null, "Grattis, du vann!\n" +
+                    "Ange ditt namn för att spara din poäng: ", "Ange namn",
+                    JOptionPane.QUESTION_MESSAGE, medalIcon, null, null);
+            if(name == null || name.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Du måste ange ett namn!", "Där blev det fel!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
-       HighScore.getHighscore().add(score);
-        Collections.sort(HighScore.getHighscore());
-        HighScore.getHighscore().forEach(System.out::println);
+        new HighScore(score, name);
+        HighScore.getHighscore().add(score);
+        if(HighScore.getHighScoreList().size()>1) {
+            Collections.sort(HighScore.getHighScoreList());
+        }
         serialize();
     }
 
