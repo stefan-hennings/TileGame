@@ -49,13 +49,10 @@ public class OptionsPanel extends JPanel {
                     button = 1;
                     System.out.println(button);
                     System.out.println(highscoreInStringFormat());
-                }
-
-                else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
+                } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
                     button = 2;
                     System.out.println(button);
-                }
-                else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 425 && clickY <= 500) {
+                } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 425 && clickY <= 500) {
                     button = 3;
                     System.out.println(button);
                 }
@@ -76,7 +73,7 @@ public class OptionsPanel extends JPanel {
             graphics2D.setColor(Color.BLACK);
             graphics2D.drawRoundRect(xCoordinate, yCoordinate, 250, 75, 50, 50);
 
-            drawCenteredString(graphics2D, textforButtons[text++] , yCoordinate);
+            drawCenteredString(graphics2D, textforButtons[text++], yCoordinate);
 
             yCoordinate += 150;
         }
@@ -98,6 +95,7 @@ public class OptionsPanel extends JPanel {
         graphics.drawString(string, xCoordinate + (250 - fontMetrics.stringWidth(string)) / 2,
                 yCoordinate + (fontMetrics.getAscent() + (75 - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
     }
+
     @SuppressWarnings("unchecked")
     public static void deSerialize() {
         try {
@@ -110,11 +108,11 @@ public class OptionsPanel extends JPanel {
     }
 
     //method in place of real high-score view.
-    public String highscoreInStringFormat(){
+    public String highscoreInStringFormat() {
         deSerialize();
         StringBuilder stringBuilder = new StringBuilder("High-Score:\n\n");
 
-        highscore.forEach(score-> {
+        highscore.forEach(score -> {
             stringBuilder.append(score);
             stringBuilder.append("\n");
         });
