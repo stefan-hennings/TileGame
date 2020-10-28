@@ -15,7 +15,7 @@ public class GameLogic {
     public GameLogic(int gridSide) {
         this.gridSide = gridSide;
         tiles = new int[this.gridSide * this.gridSide];
-        numberOfTiles = this.gridSide * this.gridSide - 1;
+        numberOfTilesExcludingBlank = this.gridSide * this.gridSide - 1;
 
         resetShuffler();
     }
@@ -120,7 +120,8 @@ public class GameLogic {
     public boolean isSolvable() {
         int inversionCount = 0;
 
-        for (int i = 0; i < numberOfTiles; i++) {
+        for (int i = 0; i <= numberOfTilesExcludingBlank; i++) {
+            System.out.println("Checking position " + i);
             for (int j = 0; j < i; j++) {
                 if (tiles[j] > tiles[i])
                     inversionCount++;
@@ -158,7 +159,7 @@ public class GameLogic {
     public void changeGridParameters(int gridSide) {
         this.gridSide = gridSide;
         tiles = new int[gridSide * gridSide];
-        numberOfTiles = gridSide * gridSide - 1;
+        numberOfTilesExcludingBlank = gridSide * gridSide - 1;
         resetShuffler();
     }
 }
