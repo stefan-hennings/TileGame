@@ -245,7 +245,7 @@ public class GameFrame extends JFrame implements Serializable {
     public static void serialize() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
-            out.writeObject(HighScore.getHighscore());
+            out.writeObject(HighScore.getHighScoreList());
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
