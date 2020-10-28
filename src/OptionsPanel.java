@@ -61,7 +61,6 @@ public class OptionsPanel extends JPanel {
                 }
             }
         });
-
     }
 
     public void buildMenu(Graphics2D graphics2D) {
@@ -80,7 +79,6 @@ public class OptionsPanel extends JPanel {
             drawCenteredString(graphics2D, textforButtons[text++] , yCoordinate);
 
             yCoordinate += 150;
-            graphics2D.setPaint(Color.GRAY);
         }
     }
 
@@ -123,19 +121,13 @@ public class OptionsPanel extends JPanel {
         return stringBuilder.toString();
     }
 
-
-
     public static void main(String[] args) {
         JFrame frame = new JFrame("OptionsMenu");
         frame.add(new OptionsPanel());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
-
-
 }
