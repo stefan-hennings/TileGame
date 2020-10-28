@@ -20,8 +20,10 @@ public class ColorPanel extends JPanel {
     private  static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
             25, new Color(0x6C3082), true),
             new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
-                    25, new Color(0xC8A957), true), new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
-            25, new Color(0x16064), true), new GradientPaint(0, 25, new Color(0x7a4988), 150,
+                    25, new Color(0xC8A957), true),
+            new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
+            25, new Color(0x16064), true),
+            new GradientPaint(0, 25, new Color(0x7a4988), 150,
             25, new Color(0x2C041C), true)};
 
 
@@ -133,5 +135,9 @@ public class ColorPanel extends JPanel {
 
     public static int getPaintNumber() {
         return paintNumber;
+    }
+
+    public static int getButton() {
+        return button;
     }
 }

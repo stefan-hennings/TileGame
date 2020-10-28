@@ -10,6 +10,7 @@ public class GameFrame extends JFrame implements Serializable {
 
     private static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
+    private static final ImageIcon medalIcon = new ImageIcon("medal.png");
     private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
     private static final JButton startOverButton = new JButton("Starta om");
@@ -65,6 +66,7 @@ public class GameFrame extends JFrame implements Serializable {
         cardPanel.add(centerpanel, "1");
         cardPanel.add(new OptionsPanel(), "2");
         cardPanel.add(new ColorPanel(), "3");
+        cardPanel.add(new HighScorePanel(), "4");
         gameFrame.add(cardPanel, BorderLayout.CENTER);
 
     }
@@ -204,32 +206,49 @@ public class GameFrame extends JFrame implements Serializable {
     }
 
     public static void loadAndSaveHighscore() {
-        deSerialize();
+        setJOptionPaneProperties();
+        HighScore.deSerialize();
+
+        String name=null;
+        while(name == null || name.isEmpty()) {
+            name = (String) JOptionPane.showInputDialog(null, "Grattis, du vann!\n" +
+                    "Ange ditt namn för att spara din poäng: ", "Ange namn",
+                    JOptionPane.QUESTION_MESSAGE, medalIcon, null, null);
+            if(name == null || name.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Du måste ange ett namn!", "Där blev det fel!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
-        highscore.add(score);
-        Collections.sort(highscore);
-        highscore.forEach(System.out::println);
+        new HighScore(score, name);
+        if(HighScore.getHighScoreList().size()>1) {
+            Collections.sort(HighScore.getHighScoreList());
+        }
         serialize();
+    }
+
+    private static void setJOptionPaneProperties() {
+        UIManager.put("OptionPane.buttonFont", smallFont);
+        UIManager.put("OptionPane.messageFont", smallFont);
+
+        if(ColorPanel.getPaintNumber()==0) {
+            UIManager.put("OptionPane.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
+            UIManager.put("Panel.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
+            UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getPaintNumber()]);
+        } else {
+            UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
+            UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
+            UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getButton()]);
+        }
     }
 
     public static void serialize() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
-            out.writeObject(highscore);
+            out.writeObject(HighScore.getHighScoreList());
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static void deSerialize() {
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
-            highscore = (List<Integer>) in.readObject();
-            in.close();
-        } catch (Exception e) {
-            System.out.println("Fil skapad");
-        }
-    }
 }
