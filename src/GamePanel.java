@@ -77,7 +77,6 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-
             GradientPaint gradientPaint = new GradientPaint(margin, 0, new Color(0x7a4988), sizeOfTile / 2f + margin,
                     0, GameFrame.getForegroundColor(), true);
             graphics2D.setPaint(gradientPaint);
@@ -133,5 +132,4 @@ public class GamePanel extends JPanel {
     public void setSizeOfTile(int gridSide) {
         sizeOfTile = sizeOfGrid / gridSide;
     }
-
 }
