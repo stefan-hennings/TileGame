@@ -2,10 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Julia Wigenstedt
@@ -17,13 +13,10 @@ import java.util.List;
 public class OptionsPanel extends JPanel {
 
     private final String[] textforButtons = {"Visa High-Score", "Ändra färgschema", "Tillbaka"};
-    private GradientPaint gradientPaint = new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
-            25, new Color(0x6C3082), true);
     private final int xCoordinate = 175;
-    private static List<Integer> highscore = new ArrayList<>();
     private static int button;
 
-    private  static GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
+    private  static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
             25, new Color(0x6C3082), true),
             new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
                     25, new Color(0xC8A957), true), new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
@@ -108,17 +101,6 @@ public class OptionsPanel extends JPanel {
         FontMetrics fontMetrics = graphics.getFontMetrics();
         graphics.drawString(string, xCoordinate + (250 - fontMetrics.stringWidth(string)) / 2,
                 yCoordinate + (fontMetrics.getAscent() + (75 - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
-    }
-
-    @SuppressWarnings("unchecked")
-    public static void deSerialize() {
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
-            highscore = (List<Integer>) in.readObject();
-            in.close();
-        } catch (Exception e) {
-            System.out.println("Fil skapad");
-        }
     }
 
     public static int getButton() {
