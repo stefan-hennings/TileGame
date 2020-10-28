@@ -145,17 +145,23 @@ public class GameLogic {
     public void newGame() {
         moveCount = 0;
         do {
-            for (int i = 0; i < tiles.length; i++) {
-                tiles[i] = (i + 1) % tiles.length;
-            }
+//            for (int i = 0; i < tiles.length; i++) {
+//                tiles[i] = (i + 1) % tiles.length;
+//            }
+//
+//            // we set blank position to tiles[last index]
+//            blankPosition = tiles.length - 1;
+//            if (numberOfTiles > 1) {
+//                Collections.shuffle(shuffler);
+//                for (int i = 0; i < tiles.length - 1; i++) {
+//                    tiles[i] = shuffler.get(i);
+//                }
+//            }
 
-            // we set blank position to tiles[last index]
             blankPosition = tiles.length - 1;
-            if (numberOfTiles > 1) {
-                Collections.shuffle(shuffler);
-                for (int i = 0; i < tiles.length - 1; i++) {
-                    tiles[i] = shuffler.get(i);
-                }
+            Collections.shuffle(shuffler);
+            for (int i = 0; i < tiles.length - 1; i++) {
+                tiles[i] = shuffler.get(i);
             }
         } while (!isSolvable() || isSolved());
     }
