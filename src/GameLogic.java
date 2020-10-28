@@ -119,14 +119,21 @@ public class GameLogic {
     public boolean isSolvable() {
         int inversionCount = 0;
 
+        //Count the number of times a high number appears before a low number
         for (int i = 0; i <= numberOfTilesExcludingBlank; i++) {
-            System.out.println("Checking position " + i);
             for (int j = 0; j < i; j++) {
-                if (tiles[j] > tiles[i])
+                if (tiles[j] > tiles[i] && !(tiles[i] == 0 || tiles[j] == 0)) {
                     inversionCount++;
+                }
             }
         }
-        return inversionCount % 2 == 0;
+        //If the gridSide is odd, or if it's even and the blank tile is on an even numbered row, confirm that
+        //inversionCount is even. Otherwise, if confirm that it's odd.
+        if (gridSide % 2 == 1 || (blankPosition % (gridSide * 2)) >= gridSide) {
+            return inversionCount % 2 == 0;
+        } else {
+            return inversionCount % 2 == 1;
+        }
     }
 
     public void newGame() {
