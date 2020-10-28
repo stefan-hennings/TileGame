@@ -100,14 +100,33 @@ public class GameLogic {
     }
 
     public boolean isSolved() {
-        if (tiles[tiles.length - 1] != 0) // if blank tile is not in the solved position ==> not solved
-            return false;
+//        if (tiles[tiles.length - 1] != 0) // if blank tile is not in the solved position ==> not solved
+//            return false;
+//
+//        for (int i = numberOfTiles - 1; i >= 0; i--) {
+//            if (tiles[i] != i + 1)
+//                return false;
+//        }
+//
+//        return true;
 
-        for (int i = numberOfTiles - 1; i >= 0; i--) {
-            if (tiles[i] != i + 1)
+//        System.out.println("Calling isSolved");
+//        System.out.println(tiles.length);
+//        for (int i = 0; i < tiles.length - 1; i++) {
+//            System.out.println("i = " + i + ", current position = " + tiles[i]);
+//            if (tiles[i] != i + 1) {
+//                return false;
+//            }
+//        }
+//
+//        System.out.println("Returning true\n");
+//        return true;
+
+        for (int i = 0; i < tiles.length - 1; i++) {
+            if (tiles[i] != i + 1) {
                 return false;
+            }
         }
-
         return true;
     }
 
