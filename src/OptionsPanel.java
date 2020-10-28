@@ -39,7 +39,7 @@ public class OptionsPanel extends JPanel {
         setPreferredSize(new Dimension(dimension, dimension + margin));
         setFont(new Font("Bell MT", Font.BOLD, 25));
 
-        setBackground(GameFrame.getForegroundColor());
+        setBackground(GamePanel.getColor()[ColorPanel.getColor()]);
         addMouseListener(new MouseAdapter() {
 
             @Override
