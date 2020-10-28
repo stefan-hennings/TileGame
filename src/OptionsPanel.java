@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -33,6 +35,33 @@ public class OptionsPanel extends JPanel {
         setFont(new Font("Bell MT", Font.BOLD, 25));
 
         setBackground(GameFrame.getForegroundColor());
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+                int button = 0;
+
+                int clickX = e.getX();
+                int clickY = e.getY();
+
+                if (clickX >= xCoordinate && clickX <= 425 && clickY >= 125 && clickY <= 200) {
+                    button = 1;
+                    System.out.println(button);
+                    System.out.println(highscoreInStringFormat());
+                }
+
+                else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
+                    button = 2;
+                    System.out.println(button);
+                }
+                else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 425 && clickY <= 500) {
+                    button = 3;
+                    System.out.println(button);
+                }
+            }
+        });
+
     }
 
     public void buildMenu(Graphics2D graphics2D) {
