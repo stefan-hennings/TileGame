@@ -97,10 +97,10 @@ public class OptionsPanel extends JPanel {
     }
 
     public void buildMenu(Graphics2D graphics2D) {
-        int text = 0;
+
         int yCoordinate = 125;
 
-        for (int i = 200; i < 650; i += 150) {
+        setBackground(GamePanel.getColor()[ColorPanel.getColor()]);
 
         for (int i = 0; i < 3; i ++) {
 
