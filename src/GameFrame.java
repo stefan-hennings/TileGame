@@ -213,6 +213,21 @@ public class GameFrame extends JFrame implements Serializable {
         serialize();
     }
 
+    private static void setJOptionPaneProperties() {
+        UIManager.put("OptionPane.buttonFont", smallFont);
+        UIManager.put("OptionPane.messageFont", smallFont);
+
+        if(ColorPanel.getPaintNumber()==0) {
+            UIManager.put("OptionPane.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
+            UIManager.put("Panel.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
+            UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getPaintNumber()]);
+        } else {
+            UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
+            UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
+            UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getButton()]);
+        }
+    }
+
     public static void serialize() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
