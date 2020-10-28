@@ -1,12 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-
-public class GameFrame extends JFrame implements Serializable {
+public class GameFrame extends JFrame {
 
     private static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
@@ -19,13 +16,12 @@ public class GameFrame extends JFrame implements Serializable {
     private static JSlider gridSizeSlider;
     private static Timer timer;
     private static int hours, minutes, seconds;
-    private static List<Integer> highscore = new ArrayList<>();
     private static  GamePanel gamePanel;
     private static JLabel timerLabel;
-    private JPanel centerpanel = new JPanel();
-    private static CardLayout cardLayout = new CardLayout();
+    private final JPanel centerpanel = new JPanel();
+    private static final CardLayout cardLayout = new CardLayout();
     private static JPanel cardPanel;
-    private JButton menuButton = new JButton("Meny");
+    private final JButton menuButton = new JButton("Meny");
     private static JFrame gameFrame;
     private static JPanel statusPanel;
 
@@ -250,5 +246,4 @@ public class GameFrame extends JFrame implements Serializable {
             e.printStackTrace();
         }
     }
-
 }
