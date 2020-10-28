@@ -134,4 +134,8 @@ public class ColorPanel extends JPanel {
     public static int getPaintNumber() {
         return paintNumber;
     }
+
+    public static int getButton() {
+        return button;
+    }
 }
