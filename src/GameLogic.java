@@ -104,16 +104,6 @@ public class GameLogic {
     }
 
     public boolean isSolved() {
-//        if (tiles[tiles.length - 1] != 0) // if blank tile is not in the solved position ==> not solved
-//            return false;
-//
-//        for (int i = numberOfTiles - 1; i >= 0; i--) {
-//            if (tiles[i] != i + 1)
-//                return false;
-//        }
-//
-//        return true;
-
 //        System.out.println("Calling isSolved");
 //        System.out.println(tiles.length);
 //        for (int i = 0; i < tiles.length - 1; i++) {
@@ -149,19 +139,6 @@ public class GameLogic {
     public void newGame() {
         moveCount = 0;
         do {
-//            for (int i = 0; i < tiles.length; i++) {
-//                tiles[i] = (i + 1) % tiles.length;
-//            }
-//
-//            // we set blank position to tiles[last index]
-//            blankPosition = tiles.length - 1;
-//            if (numberOfTiles > 1) {
-//                Collections.shuffle(shuffler);
-//                for (int i = 0; i < tiles.length - 1; i++) {
-//                    tiles[i] = shuffler.get(i);
-//                }
-//            }
-
             Collections.shuffle(shuffler);
             for (int i = 0; i < tiles.length; i++) {
                 tiles[i] = shuffler.get(i);
