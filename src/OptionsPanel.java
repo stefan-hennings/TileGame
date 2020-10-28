@@ -45,8 +45,6 @@ public class OptionsPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
 
-
-
                 int clickX = e.getX();
                 int clickY = e.getY();
 
