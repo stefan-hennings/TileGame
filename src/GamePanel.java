@@ -9,6 +9,15 @@ public class GamePanel extends JPanel {
     private int sizeOfTile;
     private final int margin;
     private final int sizeOfGrid;
+    private  static Color[] color = { new Color(0x7a4988), GameFrame.getForegroundColor(),
+            new Color(0xC8A957), new Color(0xFFFFE0),
+            new Color(0x16064), new Color(0xAFEEEE),
+            new Color(0x2C041C), new Color(0x7a4988)};
+
+    private final static Color[] menuColor = { GameFrame.getForegroundColor(),
+            new Color(0xC8A957),
+            new Color(0x16064),
+            new Color(0x7a4988)};
 
     //TODO: Adding options for changing color?
 
@@ -70,9 +79,9 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, GameFrame.getForegroundColor(), 600,
-                    yCoordinate, new Color(0x7a4988));
-            graphics2D.setPaint(rgp);
+            GradientPaint gradientPaint = new GradientPaint(margin, 0, color[ColorPanel.getColor()-1], sizeOfTile / 2f + margin,
+                    0, color[ColorPanel.getColor()], true);
+            graphics2D.setPaint(gradientPaint);
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
             //we set the color again and draw the borders.
@@ -116,6 +125,14 @@ public class GamePanel extends JPanel {
     public void callNewGame() {
         logic.newGame();
         GameFrame.updateMoveCountLabel();
+    }
+
+    public static Color[] getColor() {
+        return color;
+    }
+
+    public static Color[] getMenuColor() {
+        return menuColor;
     }
 
     public GameLogic getLogic() {

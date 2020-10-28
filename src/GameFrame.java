@@ -19,41 +19,70 @@ public class GameFrame extends JFrame implements Serializable {
     private static Timer timer;
     private static int hours, minutes, seconds;
     private static List<Integer> highscore = new ArrayList<>();
-    private final GamePanel gamePanel;
-    private JLabel timerLabel;
+    private static  GamePanel gamePanel;
+    private static JLabel timerLabel;
+    private JPanel centerpanel = new JPanel();
+    private static CardLayout cardLayout = new CardLayout();
+    private static JPanel cardPanel;
+    private JButton menuButton = new JButton("Meny");
+    private static JFrame gameFrame;
+    private static JPanel statusPanel;
 
     public GameFrame() {
-        setIconImage(icon.getImage());
-        setTitle("Världens bästa brickspel, typ");
+        gameFrame= new JFrame("Världens bästa brickspel, typ");
+        gameFrame.setIconImage(icon.getImage());
+
 
         createTimer();
 
         createGridSizeSlider();
+
+        createMenuButton();
 
         createTopPanel();
 
         createStartOverButton();
 
         gamePanel = new GamePanel(600, 30, gridSizeSlider.getValue());
-        add(gamePanel, BorderLayout.CENTER);
+
+        initializeCenterPanel();
 
         startNewGame();
 
-        add(topPanel, BorderLayout.NORTH);
+        gameFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        gameFrame.setResizable(false);
+        gameFrame.pack();
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.setVisible(true);
+    }
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+    private void initializeCenterPanel(){
+        cardPanel= new JPanel();
+        cardPanel.setLayout(cardLayout);
+        centerpanel.setLayout(new BorderLayout());
+        centerpanel.add(topPanel, BorderLayout.NORTH);
+        centerpanel.add(gamePanel, BorderLayout.CENTER);
+        cardPanel.add(centerpanel, "1");
+        cardPanel.add(new OptionsPanel(), "2");
+        cardPanel.add(new ColorPanel(), "3");
+        gameFrame.add(cardPanel, BorderLayout.CENTER);
+
     }
 
     private void createStartOverButton() {
         startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
-        startOverButton.setBackground(FOREGROUND_COLOR);
+        startOverButton.setBackground(GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
         startOverButton.setForeground(Color.BLACK);
         startOverButton.setFocusPainted(false);
         startOverButton.addActionListener(e -> startNewGame());
+    }
+    private void createMenuButton() {
+
+        menuButton.setFont(new Font("Bell MT", Font.BOLD, 25));
+        menuButton.setBackground(FOREGROUND_COLOR);
+        menuButton.setForeground(Color.BLACK);
+        menuButton.setFocusPainted(false);
+        menuButton.addActionListener(e ->  cardLayout.show(cardPanel, "2"));
     }
 
     private void createTopPanel() {
@@ -63,7 +92,7 @@ public class GameFrame extends JFrame implements Serializable {
         moveCountLabel.setFont(GameFrame.getSmallFont());
         moveCountLabel.setForeground(FOREGROUND_COLOR);
 
-        JPanel statusPanel = new JPanel();
+        statusPanel = new JPanel();
         statusPanel.setBackground(Color.WHITE);
         statusPanel.add(timerLabel, BorderLayout.EAST);
         statusPanel.setLayout(new GridLayout(2, 0));
@@ -71,7 +100,8 @@ public class GameFrame extends JFrame implements Serializable {
 
         menuPanel.setLayout(new BorderLayout());
         menuPanel.setBackground(FOREGROUND_COLOR);
-        menuPanel.add(startOverButton, BorderLayout.CENTER);
+        menuPanel.add(startOverButton, BorderLayout.WEST);
+        menuPanel.add(menuButton, BorderLayout.CENTER);
         menuPanel.add(gridSizeSlider, BorderLayout.EAST);
 
         topPanel.setLayout(new GridLayout(2, 0));
@@ -122,21 +152,23 @@ public class GameFrame extends JFrame implements Serializable {
         moveCountLabel.setText(GameLogic.getMoveCount() > 0 ? "Antal moves: " + GameLogic.getMoveCount() : "");
     }
 
-    private void updateTimerLabel() {
+    private static void updateTimerLabel() {
         timerLabel.setText(String.format("Tid: %02d:%02d", minutes, seconds));
         if (hours > 0)
             timerLabel.setText(String.format("Tid: %02d:%02d:%02d", hours, minutes, seconds));
     }
 
-    public void startNewGame() {
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
-        updateTimerLabel();
-        gamePanel.callNewGame();
-        timer.start();
-        gamePanel.repaint();
-        pack();
+    public static void startNewGame() {
+
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updateTimerLabel();
+            gamePanel.callNewGame();
+            timer.start();
+            gamePanel.repaint();
+            gameFrame.pack();
+
     }
 
     public static Timer getTimer() {
@@ -149,6 +181,26 @@ public class GameFrame extends JFrame implements Serializable {
 
     public static Color getForegroundColor() {
         return FOREGROUND_COLOR;
+    }
+
+    public static CardLayout getCardLayout() {
+        return cardLayout;
+    }
+
+    public static JPanel getCardPanel() {
+        return cardPanel;
+    }
+
+    public static JPanel getTopPanel() {
+        return topPanel;
+    }
+
+    public static JPanel getMenuPanel() {
+        return menuPanel;
+    }
+
+    public static JPanel getStatusPanel() {
+        return statusPanel;
     }
 
     public static void loadAndSaveHighscore() {
