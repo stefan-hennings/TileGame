@@ -57,6 +57,7 @@ public class GamePanel extends JPanel {
                     if (logic.isSolved()) {
                         GameFrame.getTimer().stop();
                         GameFrame.loadAndSaveHighscore();
+                        GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "4");
                     }
                 }
                 repaint();

@@ -65,6 +65,7 @@ public class GameFrame extends JFrame implements Serializable {
         cardPanel.add(centerpanel, "1");
         cardPanel.add(new OptionsPanel(), "2");
         cardPanel.add(new ColorPanel(), "3");
+        cardPanel.add(new HighScorePanel(), "4");
         gameFrame.add(cardPanel, BorderLayout.CENTER);
 
     }
