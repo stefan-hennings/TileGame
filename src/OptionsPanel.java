@@ -17,10 +17,18 @@ import java.util.List;
 public class OptionsPanel extends JPanel {
 
     private final String[] textforButtons = {"Visa High-Score", "Ändra färgschema", "Tillbaka"};
-    private final GradientPaint gradientPaint = new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
+    private GradientPaint gradientPaint = new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
             25, new Color(0x6C3082), true);
     private final int xCoordinate = 175;
     private static List<Integer> highscore = new ArrayList<>();
+    private static int button;
+
+    private  static GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
+            25, new Color(0x6C3082), true),
+            new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
+                    25, new Color(0xC8A957), true), new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
+            25, new Color(0x16064), true)};
+
 
     //            new Color(0x2C041C)
     //            new Color(0x7a4988)
@@ -40,21 +48,52 @@ public class OptionsPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
 
-                int button;
+
 
                 int clickX = e.getX();
                 int clickY = e.getY();
 
                 if (clickX >= xCoordinate && clickX <= 425 && clickY >= 125 && clickY <= 200) {
-                    button = 1;
+                    button = 0;
                     System.out.println(button);
+                    for(Component component: GameFrame.getMenuPanel().getComponents()){
+                        component.setBackground(GamePanel.getColor()[button+1]);
+                    }
+                    for(Component component: GameFrame.getStatusPanel().getComponents()){
+                        component.setForeground(GamePanel.getColor()[button+1]);
+                    }
                     System.out.println(highscoreInStringFormat());
+
+                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
+                    GameFrame.getTopPanel().repaint();
+                    GameFrame.getMenuPanel().repaint();
+                    GameFrame.startNewGame();
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
                     button = 2;
                     System.out.println(button);
+                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
+                    for(Component component: GameFrame.getMenuPanel().getComponents()){
+                        component.setBackground(GamePanel.getColor()[button]);
+                    }
+                    for(Component component: GameFrame.getStatusPanel().getComponents()){
+                        component.setForeground(GamePanel.getColor()[button]);
+                    }
+                    GameFrame.getTopPanel().repaint();
+                    GameFrame.getMenuPanel().repaint();
+                    GameFrame.startNewGame();
+
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 425 && clickY <= 500) {
-                    button = 3;
-                    System.out.println(button);
+                    button = 4;
+                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
+                    for(Component component: GameFrame.getMenuPanel().getComponents()){
+                        component.setBackground(GamePanel.getColor()[button]);
+                    }
+                    for(Component component: GameFrame.getStatusPanel().getComponents()){
+                        component.setForeground(GamePanel.getColor()[button]);
+                    }
+                    GameFrame.getTopPanel().repaint();
+                    GameFrame.getMenuPanel().repaint();
+                    GameFrame.startNewGame();
                 }
             }
         });
@@ -66,7 +105,7 @@ public class OptionsPanel extends JPanel {
 
         for (int i = 200; i < 650; i += 150) {
 
-            graphics2D.setPaint(gradientPaint);
+            graphics2D.setPaint(gradientPaints[0]);
             graphics2D.setPaint(graphics2D.getPaint());
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, 250, 75, 50, 50);
 
@@ -117,6 +156,10 @@ public class OptionsPanel extends JPanel {
             stringBuilder.append("\n");
         });
         return stringBuilder.toString();
+    }
+
+    public static int getButton() {
+        return button;
     }
 
     public static void main(String[] args) {
