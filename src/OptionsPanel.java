@@ -82,6 +82,19 @@ public class OptionsPanel extends JPanel {
         }
     }
 
+    //method in place of real high-score view.
+    public String highscoreInStringFormat(){
+        deSerialize();
+        StringBuilder stringBuilder = new StringBuilder("High-Score:\n\n");
+
+        highscore.forEach(score-> {
+            stringBuilder.append(score);
+            stringBuilder.append("\n");
+        });
+        return stringBuilder.toString();
+    }
+
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("OptionsMenu");

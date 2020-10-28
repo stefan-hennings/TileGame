@@ -12,17 +12,20 @@ import java.awt.event.MouseEvent;
  */
 public class GamePanel extends JPanel {
 
+    private static int dimension;
     GameLogic logic;
     private int sizeOfTile;
-    private final int margin;
-    private final int sizeOfGrid;
+    private static int margin;
+    private static int sizeOfGrid;
 
     //TODO: Adding options for changing color?
 
     public GamePanel(int dimension, int margin, int gridSide) {
 
+
         logic = new GameLogic(gridSide);
-        this.margin = margin;
+        GamePanel.margin = margin;
+        GamePanel.dimension = dimension;
 
         sizeOfGrid = (dimension - 2 * margin);
         sizeOfTile = sizeOfGrid / gridSide;
@@ -77,9 +80,10 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-            GradientPaint rgp = new GradientPaint(xCoordinate, yCoordinate, GameFrame.getForegroundColor(), 600,
-                    yCoordinate, new Color(0x7a4988));
-            graphics2D.setPaint(rgp);
+
+            GradientPaint gradientPaint = new GradientPaint(margin, 0, new Color(0x7a4988), sizeOfTile/2f+margin,
+                    0, GameFrame.getForegroundColor(),true);
+            graphics2D.setPaint(gradientPaint);
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
             //we set the color again and draw the borders.
@@ -129,7 +133,16 @@ public class GamePanel extends JPanel {
         return logic;
     }
 
+    public static int getMargin() {
+        return margin;
+    }
+
+    public static int getDimension() {
+        return dimension;
+    }
+
     public void setSizeOfTile(int gridSide) {
         sizeOfTile = sizeOfGrid / gridSide;
     }
+
 }
