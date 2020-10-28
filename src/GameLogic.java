@@ -5,7 +5,7 @@ import java.util.List;
 public class GameLogic {
 
     private int[] tiles;
-    private int numberOfTiles;
+    private int numberOfTilesExcludingBlank;
     List<Integer> shuffler;
     private int gridSide;
     private int blankPosition;
