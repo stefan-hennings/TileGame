@@ -3,13 +3,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by Julia Wigenstedt
- * Date: 2020-10-22
- * Time: 16:45
- * Project: Inlämning3GUI
- * Copyright: MIT
- */
 public class GamePanel extends JPanel {
 
     GameLogic logic;
