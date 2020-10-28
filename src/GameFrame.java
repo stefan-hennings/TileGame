@@ -220,7 +220,6 @@ public class GameFrame extends JFrame implements Serializable {
         }
         int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
         new HighScore(score, name);
-        HighScore.getHighscore().add(score);
         if(HighScore.getHighScoreList().size()>1) {
             Collections.sort(HighScore.getHighScoreList());
         }

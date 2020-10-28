@@ -10,9 +10,17 @@ import java.util.List;
  * Project: Inlämning3GUI
  * Copyright: MIT
  */
-public class HighScore {
-    private static List<Integer> highscore = new ArrayList<>();
-    private static List<String> scoreHolder = new ArrayList<>();
+public class HighScore implements Comparable<HighScore>, Serializable {
+
+    private static List<HighScore> highScoreList = new ArrayList<>();
+    private int score;
+    private String name;
+
+    public HighScore(int score, String name){
+        this.score = score;
+        this.name = name;
+        highScoreList.add(this);
+    }
 
     @SuppressWarnings("unchecked")
     public static void deSerialize() {
