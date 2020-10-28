@@ -10,6 +10,7 @@ public class GameFrame extends JFrame implements Serializable {
 
     private static final Color FOREGROUND_COLOR = new Color(0x9e7bb5);
     private static final ImageIcon icon = new ImageIcon("numberfifteen.png");
+    private static final ImageIcon medalIcon = new ImageIcon("medal.png");
     private static final JPanel menuPanel = new JPanel();
     private static final JPanel topPanel = new JPanel();
     private static final JButton startOverButton = new JButton("Starta om");
