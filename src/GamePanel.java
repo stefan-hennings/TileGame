@@ -122,7 +122,7 @@ public class GamePanel extends JPanel {
     private void drawStartMessage(Graphics2D g) {
         if (logic.isSolved()) {
             g.setFont(getFont().deriveFont(Font.BOLD, 25));
-            g.setColor(GameFrame.getForegroundColor());
+            g.setColor(color[ColorPanel.getColor()-1]);
             String s = "Grattis, du vann! Klicka för nytt spel";
             g.drawString(s, (getWidth() - g.getFontMetrics().stringWidth(s)) / 2,
                     getHeight() - margin);
