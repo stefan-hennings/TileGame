@@ -50,7 +50,6 @@ public class OptionsPanel extends JPanel {
 
                 if (clickX >= xCoordinate && clickX <= 425 && clickY >= 125 && clickY <= 200) {
                     button = 0;
-                    System.out.println(button);
                     for(Component component: GameFrame.getMenuPanel().getComponents()){
                         component.setBackground(GamePanel.getColor()[button+1]);
                     }
@@ -65,8 +64,7 @@ public class OptionsPanel extends JPanel {
                     GameFrame.startNewGame();
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
                     button = 2;
-                    System.out.println(button);
-                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
+                    GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "3");
                     for(Component component: GameFrame.getMenuPanel().getComponents()){
                         component.setBackground(GamePanel.getColor()[button]);
                     }
@@ -80,14 +78,6 @@ public class OptionsPanel extends JPanel {
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 425 && clickY <= 500) {
                     button = 4;
                     GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
-                    for(Component component: GameFrame.getMenuPanel().getComponents()){
-                        component.setBackground(GamePanel.getColor()[button]);
-                    }
-                    for(Component component: GameFrame.getStatusPanel().getComponents()){
-                        component.setForeground(GamePanel.getColor()[button]);
-                    }
-                    GameFrame.getTopPanel().repaint();
-                    GameFrame.getMenuPanel().repaint();
                     GameFrame.startNewGame();
                 }
             }
@@ -109,10 +99,11 @@ public class OptionsPanel extends JPanel {
             graphics2D.setColor(Color.BLACK);
             graphics2D.drawRoundRect(xCoordinate, yCoordinate, 250, 75, 50, 50);
 
-            drawCenteredString(graphics2D, textforButtons[text++], yCoordinate);
+            drawCenteredString(graphics2D, textforButtons[i], yCoordinate);
 
             yCoordinate += 150;
         }
+        repaint();
     }
 
     @Override
