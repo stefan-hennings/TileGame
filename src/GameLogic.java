@@ -106,9 +106,7 @@ public class GameLogic {
 //                return false;
 //            }
 //        }
-//
 //        System.out.println("Returning true\n");
-//        return true;
 
         for (int i = 0; i < tiles.length - 1; i++) {
             if (tiles[i] != i + 1) {
