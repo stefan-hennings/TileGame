@@ -24,6 +24,10 @@ public class GameLogic {
         tiles = new int[this.gridSide * this.gridSide];
         numberOfTiles = this.gridSide * this.gridSide - 1;
 
+        resetShuffler();
+    }
+
+    private void resetShuffler() {
         shuffler = new ArrayList<>();
 
         for (int i = 1; i < (this.gridSide * this.gridSide); i++) {
@@ -183,10 +187,6 @@ public class GameLogic {
         this.gridSide = gridSide;
         tiles = new int[gridSide * gridSide];
         numberOfTiles = gridSide * gridSide - 1;
-        shuffler = new ArrayList<>();
-
-        for (int i = 1; i < (this.gridSide * this.gridSide); i++) {
-            shuffler.add(i);
-        }
+        resetShuffler();
     }
 }
