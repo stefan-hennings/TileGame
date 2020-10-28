@@ -24,4 +24,12 @@ public class HighScore {
             System.out.println("Fil skapad");
         }
     }
+
+    public static List<Integer> getHighscore() {
+        return highscore;
+    }
+
+    public static List<String> getScoreHolder() {
+        return scoreHolder;
+    }
 }

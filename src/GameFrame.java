@@ -204,32 +204,22 @@ public class GameFrame extends JFrame implements Serializable {
     }
 
     public static void loadAndSaveHighscore() {
-        deSerialize();
+        HighScore.deSerialize();
         int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
-        highscore.add(score);
-        Collections.sort(highscore);
-        highscore.forEach(System.out::println);
+       HighScore.getHighscore().add(score);
+        Collections.sort(HighScore.getHighscore());
+        HighScore.getHighscore().forEach(System.out::println);
         serialize();
     }
 
     public static void serialize() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
-            out.writeObject(highscore);
+            out.writeObject(HighScore.getHighscore());
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static void deSerialize() {
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
-            highscore = (List<Integer>) in.readObject();
-            in.close();
-        } catch (Exception e) {
-            System.out.println("Fil skapad");
-        }
-    }
 }
