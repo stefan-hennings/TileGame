@@ -50,12 +50,6 @@ public class OptionsPanel extends JPanel {
 
                 if (clickX >= xCoordinate && clickX <= 425 && clickY >= 125 && clickY <= 200) {
                     button = 0;
-                    for(Component component: GameFrame.getMenuPanel().getComponents()){
-                        component.setBackground(GamePanel.getColor()[button+1]);
-                    }
-                    for(Component component: GameFrame.getStatusPanel().getComponents()){
-                        component.setForeground(GamePanel.getColor()[button+1]);
-                    }
                     System.out.println(highscoreInStringFormat());
 
                     GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "1");
@@ -65,12 +59,6 @@ public class OptionsPanel extends JPanel {
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 275 && clickY <= 350) {
                     button = 2;
                     GameFrame.getCardLayout().show(GameFrame.getCardPanel(), "3");
-                    for(Component component: GameFrame.getMenuPanel().getComponents()){
-                        component.setBackground(GamePanel.getColor()[button]);
-                    }
-                    for(Component component: GameFrame.getStatusPanel().getComponents()){
-                        component.setForeground(GamePanel.getColor()[button]);
-                    }
                     GameFrame.getTopPanel().repaint();
                     GameFrame.getMenuPanel().repaint();
                     GameFrame.startNewGame();
