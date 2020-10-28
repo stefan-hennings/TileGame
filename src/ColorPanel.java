@@ -54,7 +54,6 @@ public class ColorPanel extends JPanel {
                 } else if (clickX >= xCoordinate && clickX <= 425 && clickY >= 225 && clickY <= 300) {
                     button = 2;
                     paintNumber = 1;
-                    System.out.println(button);
                     paintGameFrame();
                     setBackground(GamePanel.getColor()[button+1]);
                     repaint();
