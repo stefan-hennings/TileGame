@@ -71,7 +71,7 @@ public class GameFrame extends JFrame implements Serializable {
 
     private void createStartOverButton() {
         startOverButton.setFont(new Font("Bell MT", Font.BOLD, 25));
-        startOverButton.setBackground(GamePanel.getColor()[OptionsPanel.getButton()+1]);
+        startOverButton.setBackground(GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
         startOverButton.setForeground(Color.BLACK);
         startOverButton.setFocusPainted(false);
         startOverButton.addActionListener(e -> startNewGame());
