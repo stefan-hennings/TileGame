@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +71,17 @@ public class OptionsPanel extends JPanel {
         graphics.drawString(string, xCoordinate + (250 - fontMetrics.stringWidth(string)) / 2,
                 yCoordinate + (fontMetrics.getAscent() + (75 - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
     }
+    @SuppressWarnings("unchecked")
+    public static void deSerialize() {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
+            highscore = (List<Integer>) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            System.out.println("Fil skapad");
+        }
+    }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("OptionsMenu");
