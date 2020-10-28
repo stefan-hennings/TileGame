@@ -16,6 +16,9 @@ public class GamePanel extends JPanel {
     private int sizeOfTile;
     private final int margin;
     private final int sizeOfGrid;
+    private  static Color[] color = { new Color(0x7a4988), GameFrame.getForegroundColor(),
+            new Color(0xC8A957), new Color(0xFFFFE0),
+            new Color(0x16064), new Color(0xAFEEEE) };
 
     //TODO: Adding options for changing color?
 
@@ -77,8 +80,8 @@ public class GamePanel extends JPanel {
             }
             // for other tiles, we first set the color of the tile and fill it.
 
-            GradientPaint gradientPaint = new GradientPaint(margin, 0, new Color(0x7a4988), sizeOfTile / 2f + margin,
-                    0, GameFrame.getForegroundColor(), true);
+            GradientPaint gradientPaint = new GradientPaint(margin, 0, color[OptionsPanel.getButton()], sizeOfTile / 2f + margin,
+                    0, color[OptionsPanel.getButton()+1], true);
             graphics2D.setPaint(gradientPaint);
             graphics2D.fillRoundRect(xCoordinate, yCoordinate, sizeOfTile, sizeOfTile, arc, arc);
 
@@ -123,6 +126,10 @@ public class GamePanel extends JPanel {
     public void callNewGame() {
         logic.newGame();
         GameFrame.updateMoveCountLabel();
+    }
+
+    public static Color[] getColor() {
+        return color;
     }
 
     public GameLogic getLogic() {
