@@ -70,4 +70,17 @@ public class OptionsPanel extends JPanel {
                 yCoordinate + (fontMetrics.getAscent() + (75 - (fontMetrics.getAscent() + fontMetrics.getDescent())) / 2));
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("OptionsMenu");
+        frame.add(new OptionsPanel());
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+    }
+
+
 }
