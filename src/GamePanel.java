@@ -14,7 +14,7 @@ public class GamePanel extends JPanel {
 
     GameLogic logic;
     private int sizeOfTile;
-    private int margin;
+    private final int margin;
     private static int sizeOfGrid;
 
     //TODO: Adding options for changing color?
