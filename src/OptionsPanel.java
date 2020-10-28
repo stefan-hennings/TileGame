@@ -27,12 +27,9 @@ public class OptionsPanel extends JPanel {
             25, new Color(0x6C3082), true),
             new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
                     25, new Color(0xC8A957), true), new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
-            25, new Color(0x16064), true)};
-
-
-    //            new Color(0x2C041C)
-    //            new Color(0x7a4988)
-    //            new Color(0x6C3082)
+            25, new Color(0x16064), true),
+            new GradientPaint(0, 25, new Color(0x7a4988), 150,
+            25, new Color(0x2C041C), true)};
 
     public OptionsPanel() {
 
