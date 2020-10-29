@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.html.Option;
 import java.awt.*;
 import java.io.*;
 import java.util.Collections;
@@ -16,7 +17,7 @@ public class GameFrame extends JFrame {
     private static JSlider gridSizeSlider;
     private static Timer timer;
     private static int hours, minutes, seconds;
-    private static  GamePanel gamePanel;
+    private static GamePanel gamePanel;
     private static JLabel timerLabel;
     private final JPanel centerpanel = new JPanel();
     private static final CardLayout cardLayout = new CardLayout();
@@ -26,7 +27,7 @@ public class GameFrame extends JFrame {
     private static JPanel statusPanel;
 
     public GameFrame() {
-        gameFrame= new JFrame("Världens bästa brickspel, typ");
+        gameFrame = new JFrame("Världens bästa brickspel, typ");
         gameFrame.setIconImage(icon.getImage());
 
 
@@ -53,8 +54,8 @@ public class GameFrame extends JFrame {
         gameFrame.setVisible(true);
     }
 
-    private void initializeCenterPanel(){
-        cardPanel= new JPanel();
+    private void initializeCenterPanel() {
+        cardPanel = new JPanel();
         cardPanel.setLayout(cardLayout);
         centerpanel.setLayout(new BorderLayout());
         centerpanel.add(topPanel, BorderLayout.NORTH);
@@ -74,13 +75,14 @@ public class GameFrame extends JFrame {
         startOverButton.setFocusPainted(false);
         startOverButton.addActionListener(e -> startNewGame());
     }
+
     private void createMenuButton() {
 
         menuButton.setFont(new Font("Bell MT", Font.BOLD, 25));
         menuButton.setBackground(FOREGROUND_COLOR);
         menuButton.setForeground(Color.BLACK);
         menuButton.setFocusPainted(false);
-        menuButton.addActionListener(e ->  cardLayout.show(cardPanel, "2"));
+        menuButton.addActionListener(e -> cardLayout.show(cardPanel, "2"));
     }
 
     private void createTopPanel() {
@@ -158,14 +160,14 @@ public class GameFrame extends JFrame {
 
     public static void startNewGame() {
 
-            seconds = 0;
-            minutes = 0;
-            hours = 0;
-            updateTimerLabel();
-            gamePanel.callNewGame();
-            timer.start();
-            gamePanel.repaint();
-            gameFrame.pack();
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        updateTimerLabel();
+        gamePanel.callNewGame();
+        timer.start();
+        gamePanel.repaint();
+        gameFrame.pack();
 
     }
 
@@ -205,10 +207,10 @@ public class GameFrame extends JFrame {
         setJOptionPaneProperties();
         HighScore.deSerialize();
 
-        String name=null;
-        while(name == null || name.isEmpty()) {
+        String name = null;
+        while (name == null || name.isEmpty()) {
             name = (String) JOptionPane.showInputDialog(null, "Grattis, du vann!\n" +
-                    "Ange ditt namn för att spara din poäng: ", "Ange namn",
+                            "Ange ditt namn för att spara din poäng: ", "Ange namn",
                     JOptionPane.QUESTION_MESSAGE, medalIcon, null, null);
             if(name == null || name.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Du måste ange ett namn!", "Där blev det fel!", JOptionPane.ERROR_MESSAGE);
@@ -216,7 +218,7 @@ public class GameFrame extends JFrame {
         }
         int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
         new HighScore(score, name);
-        if(HighScore.getHighScoreList().size()>1) {
+        if (HighScore.getHighScoreList().size() > 1) {
             Collections.sort(HighScore.getHighScoreList());
         }
         serialize();
@@ -231,8 +233,8 @@ public class GameFrame extends JFrame {
             UIManager.put("Panel.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
             UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getPaintNumber()]);
         } else {
-            UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
-            UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton()+1]);
+            UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
+            UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
             UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getButton()]);
         }
     }
