@@ -212,7 +212,10 @@ public class GameFrame extends JFrame {
             name = (String) JOptionPane.showInputDialog(null, "Grattis, du vann!\n" +
                             "Ange ditt namn för att spara din poäng: ", "Ange namn",
                     JOptionPane.QUESTION_MESSAGE, medalIcon, null, null);
-            if(name == null || name.isEmpty()){
+            if (name == null) {
+                JOptionPane.showMessageDialog(null, "Din poäng har inte sparats.", "Ingen poäng sparad", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else if (name.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Du måste ange ett namn!", "Där blev det fel!", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -227,8 +230,9 @@ public class GameFrame extends JFrame {
     private static void setJOptionPaneProperties() {
         UIManager.put("OptionPane.buttonFont", smallFont);
         UIManager.put("OptionPane.messageFont", smallFont);
+        UIManager.put("OptionPane.cancelButtonText", "Avbryt");
 
-        if(ColorPanel.getPaintNumber()==0) {
+        if (ColorPanel.getPaintNumber() == 0) {
             UIManager.put("OptionPane.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
             UIManager.put("Panel.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
             UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getPaintNumber()]);
