@@ -6,7 +6,7 @@ public class GameLogic {
 
     private int[] tiles;
     private int numberOfTilesExcludingBlank;
-    List<Integer> shuffler;
+    private List<Integer> shuffler;
     private int gridSide;
     private int blankPosition;
     private static int moveCount = 0;
