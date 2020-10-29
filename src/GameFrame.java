@@ -201,31 +201,23 @@ public class GameFrame extends JFrame {
         return statusPanel;
     }
 
-    public static void loadAndSaveHighscore() {
-        setJOptionPaneProperties();
-        HighScore.deSerialize();
-
-        String name = null;
-        while (name == null || name.isEmpty()) {
-            name = (String) JOptionPane.showInputDialog(null, "Grattis, du vann!\n" +
-                            "Ange ditt namn för att spara din poäng: ", "Ange namn",
-                    JOptionPane.QUESTION_MESSAGE, medalIcon, null, null);
-            if (name == null) {
-                JOptionPane.showMessageDialog(null, "Din poäng har inte sparats.", "Ingen poäng sparad", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            } else if (name.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Du måste ange ett namn!", "Där blev det fel!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        int score = hours * 3600 + minutes * 60 + seconds + GameLogic.getMoveCount();
-        new HighScore(score, name);
-        if (HighScore.getHighScoreList().size() > 1) {
-            Collections.sort(HighScore.getHighScoreList());
-        }
-        HighScore.serialize();
+    public static int getHours() {
+        return hours;
     }
 
-    private static void setJOptionPaneProperties() {
+    public static int getMinutes() {
+        return minutes;
+    }
+
+    public static int getSeconds() {
+        return seconds;
+    }
+
+    public static ImageIcon getMedalIcon() {
+        return medalIcon;
+    }
+
+    public static void setJOptionPaneProperties() {
         UIManager.put("OptionPane.buttonFont", smallFont);
         UIManager.put("OptionPane.messageFont", smallFont);
         UIManager.put("OptionPane.cancelButtonText", "Avbryt");
@@ -245,5 +237,4 @@ public class GameFrame extends JFrame {
             UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getButton()]);
         }
     }
-
 }

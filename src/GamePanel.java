@@ -48,7 +48,7 @@ public class GamePanel extends JPanel {
                     if (logic.isSolved()) {
                         GameFrame.getTimer().stop();
                         repaint();
-                        GameFrame.loadAndSaveHighscore();
+                        HighScore.loadAndSaveHighscore();
                     }
                 }
                 repaint();
