@@ -12,10 +12,10 @@ import java.util.List;
 public class HighScore implements Comparable<HighScore>, Serializable {
 
     private static List<HighScore> highScoreList = new ArrayList<>();
-    private int score;
-    private String name;
+    private final int score;
+    private final String name;
 
-    public HighScore(int score, String name){
+    public HighScore(int score, String name) {
         this.score = score;
         this.name = name;
         highScoreList.add(this);

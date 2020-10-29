@@ -14,7 +14,7 @@ public class HighScorePanel extends JPanel {
     private final int xCoordinate = 150;
 
     private String[] textForButtons;
-    private  static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
+    private static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
             25, new Color(0x6C3082), true),
             new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
                     25, new Color(0xC8A957), true), new GradientPaint(0, 25, new Color(0xAFEEEE), 150,
@@ -45,10 +45,10 @@ public class HighScorePanel extends JPanel {
         HighScore.deSerialize();
         createButtonText();
 
-        setBackground(GamePanel.getColor()[ColorPanel.getButton()+1]);
+        setBackground(GamePanel.getColor()[ColorPanel.getButton() + 1]);
         int yCoordinate = 30;
 
-        for (int i = 0; i < 11; i ++) {
+        for (int i = 0; i < 11; i++) {
 
             graphics2D.setPaint(gradientPaints[ColorPanel.getPaintNumber()]);
             graphics2D.fillRect(xCoordinate, yCoordinate, 300, 50);
