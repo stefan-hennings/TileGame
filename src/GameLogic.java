@@ -10,7 +10,6 @@ public class GameLogic {
     private int gridSide;
     private int blankPosition;
     private static int moveCount = 0;
-    List<Integer> tilesToRotate;
 
     public GameLogic(int gridSide) {
         this.gridSide = gridSide;
@@ -30,7 +29,7 @@ public class GameLogic {
 
     public void moveTiles(int clickedXPixel, int clickedYPixel, int gridPixelWidth, int tilePixelWidth) {
 
-        tilesToRotate = new ArrayList<>();
+        List<Integer> tilesToRotate = new ArrayList<>();
 
         if (clickedXPixel < 0 || clickedXPixel > gridPixelWidth || clickedYPixel < 0 || clickedYPixel > gridPixelWidth) {
             return;
