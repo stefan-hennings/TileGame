@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collections;
 
 public class GameFrame extends JFrame {
 
