@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
  */
 public class OptionsPanel extends JPanel {
 
-    private final String[] textforButtons = {"Visa High-Score", "Ändra färgschema", "Tillbaka"};
+    private final String[] textForButtons = {"Visa High-Score", "Ändra färgschema", "Tillbaka"};
     private final int xCoordinate = 175;
 
     private static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
@@ -75,7 +75,7 @@ public class OptionsPanel extends JPanel {
             graphics2D.setColor(Color.BLACK);
             graphics2D.drawRoundRect(xCoordinate, yCoordinate, 250, 75, 50, 50);
 
-            drawCenteredString(graphics2D, textforButtons[i], yCoordinate);
+            drawCenteredString(graphics2D, textForButtons[i], yCoordinate);
 
             yCoordinate += 150;
         }
