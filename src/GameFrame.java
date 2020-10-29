@@ -236,6 +236,11 @@ public class GameFrame extends JFrame {
             UIManager.put("OptionPane.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
             UIManager.put("Panel.background", GamePanel.getMenuColor()[ColorPanel.getPaintNumber()]);
             UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getPaintNumber()]);
+        } else if (ColorPanel.getButton() == 6) {
+            UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
+            UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
+            UIManager.put("Button.background", GamePanel.getColor()[ColorPanel.getButton()]);
+            UIManager.put("Button.foreground", GamePanel.getColor()[1]);
         } else {
             UIManager.put("OptionPane.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
             UIManager.put("Panel.background", GamePanel.getColor()[ColorPanel.getButton() + 1]);
