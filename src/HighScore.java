@@ -1,6 +1,4 @@
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +21,16 @@ public class HighScore implements Comparable<HighScore>, Serializable {
         highScoreList.add(this);
     }
 
+    public static void serialize() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
+            out.writeObject(getHighScoreList());
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public static void deSerialize() {
         try {
@@ -37,6 +45,7 @@ public class HighScore implements Comparable<HighScore>, Serializable {
     public static List<HighScore> getHighScoreList() {
         return highScoreList;
     }
+
     public Integer getScore() {
         return score;
     }

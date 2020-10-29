@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
 import java.util.Collections;
 
 public class GameFrame extends JFrame {
@@ -219,7 +218,7 @@ public class GameFrame extends JFrame {
         if(HighScore.getHighScoreList().size()>1) {
             Collections.sort(HighScore.getHighScoreList());
         }
-        serialize();
+        HighScore.serialize();
     }
 
     private static void setJOptionPaneProperties() {
@@ -237,13 +236,4 @@ public class GameFrame extends JFrame {
         }
     }
 
-    public static void serialize() {
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("highscores.ser"));
-            out.writeObject(HighScore.getHighScoreList());
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
