@@ -37,9 +37,11 @@ public class HighScore implements Comparable<HighScore>, Serializable {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("highscores.ser"));
             highScoreList = (List<HighScore>) in.readObject();
             in.close();
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             serialize();
             System.out.println("Fil skapad");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
