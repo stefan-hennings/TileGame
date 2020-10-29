@@ -38,6 +38,7 @@ public class HighScore implements Comparable<HighScore>, Serializable {
             highScoreList = (List<HighScore>) in.readObject();
             in.close();
         } catch (Exception e) {
+            serialize();
             System.out.println("Fil skapad");
         }
     }
