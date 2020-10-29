@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 public class HighScorePanel extends JPanel {
     private final int xCoordinate = 150;
 
-    private String[] textforButtons;
+    private String[] textForButtons;
     private  static final GradientPaint[] gradientPaints = {new GradientPaint(0, 25, GameFrame.getForegroundColor(), 150,
             25, new Color(0x6C3082), true),
             new GradientPaint(0, 25, new Color(0xFFFFE0), 150,
@@ -56,31 +56,31 @@ public class HighScorePanel extends JPanel {
             graphics2D.setColor(Color.BLACK);
             graphics2D.drawRect(xCoordinate, yCoordinate, 300, 50);
 
-            drawCenteredString(graphics2D, textforButtons[i], yCoordinate);
+            drawCenteredString(graphics2D, textForButtons[i], yCoordinate);
 
             yCoordinate += 60;
         }
     }
 
     private void createButtonText() {
-        textforButtons = new String[11];
+        textForButtons = new String[11];
         if (!HighScore.getHighScoreList().isEmpty()) {
-            for (int i = 0; i < textforButtons.length - 1; i++) {
+            for (int i = 0; i < textForButtons.length - 1; i++) {
                 if (i < HighScore.getHighScoreList().size()) {
-                    textforButtons[i] = (i + 1) + ". " + HighScore.getHighScoreList().get(i).getName() + ": " +
+                    textForButtons[i] = (i + 1) + ". " + HighScore.getHighScoreList().get(i).getName() + ": " +
                             HighScore.getHighScoreList().get(i).getScore();
                 } else {
-                    textforButtons[i] = i + 1 + ". Göransson";
+                    textForButtons[i] = i + 1 + ". Göransson";
                 }
 
             }
         } else {
-            for (int i = 0; i < textforButtons.length - 1; i++) {
-                textforButtons[i] = i + 1 + ". Göransson";
+            for (int i = 0; i < textForButtons.length - 1; i++) {
+                textForButtons[i] = i + 1 + ". Göransson";
             }
 
         }
-        textforButtons[10] = "Tillbaka";
+        textForButtons[10] = "Tillbaka";
     }
 
     @Override
